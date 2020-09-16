@@ -1,0 +1,114 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 2</title>
+    <script src="phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                debug: false
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    var game = new Phaser.Game(config);
+
+    var paddle_speed = 200;
+    var initial_ball_speed_vector = (100, 100);
+    var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
+
+    // Function for creating the grid of bricks
+    function create_bricks(rows, cols, that)
+    {
+        // TODO: Make this generate a grid rather than one line
+        bricks = that.physics.add.staticGroup({
+            key: 'brick',
+            repeat: cols-1,
+            setXY: { x: 50, y: 50, stepX: 75 }
+        });
+
+        return bricks;
+    }
+
+    // Callback function for when the ball hits a brick
+    function ball_brick_collision(ball, brick)
+    {
+        brick.disableBody(true,true);
+        // TODO: Tally score or detect when the player wins or something like that
+    }
+
+    function preload ()
+    {
+        // Change these once we have the real assets
+        this.load.image('paddle', 'assets/paddle_temp.png');
+        this.load.image('brick', 'assets/brick_temp.png');
+        this.load.image('ball', 'assets/ball_temp.png');
+    }
+
+    function create ()
+    {
+        // TODO: Further implement create_bricks
+        var bricks = create_bricks(1,10,this);
+        
+        paddle = this.physics.add.sprite(400,500,'paddle');
+        paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
+        paddle.setImmovable(true); // Don't move when the ball hits the paddle
+
+        ball = this.physics.add.sprite(400,400,'ball'); 
+        ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
+        ball.setVelocity(initial_ball_speed_vector);
+        ball.setBounce(1); // Don't lose speed when bouncing
+        ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
+
+        this.physics.add.collider(paddle, ball);
+        this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
+
+        // TODO: Add a collider on the bottom of the screen that makes the player lose a life
+
+        cursors = this.input.keyboard.createCursorKeys();
+
+    }
+
+    function update ()
+    {
+        // Handle keyboard controls for moving the paddle
+        if(cursors.left.isDown)
+        {
+            paddle.setVelocityX(-paddle_speed);
+        }
+        else if (cursors.right.isDown) 
+        {
+            paddle.setVelocityX(paddle_speed);
+        }
+        else
+        {
+            paddle.setVelocityX(0);
+        }
+
+    }
+
+
+</script>
+
+</body>
+</html>
