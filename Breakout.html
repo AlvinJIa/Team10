@@ -38,21 +38,24 @@
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
+    var brick_steps = { x: 75, y: 50 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
     {
-        // TODO: Make this generate a grid rather than one line
-        // TODO: Also, if some bricks are worth more than others,
-        // TODO: the bricks should be different colors to indicate this
-        var bricks = that.physics.add.staticGroup({
-            key: 'brick',
-            repeat: cols-1,
-            setXY: { x: first_brick_offset.x, y: first_brick_offset.y, stepX: 75 }
-        });
+        var bricks = that.physics.add.staticGroup();
 
+        for(i = 0; i < cols; i++)
+        {
+            for(j = 0; j < rows; j++)
+            {
+                bricks.create(first_brick_offset.x + i*brick_steps.x,
+                              first_brick_offset.y + j*brick_steps.y,
+                              'brick');
+            }
+        }
         return bricks;
     }
 
@@ -102,7 +105,7 @@
 
     function create ()
     {
-        var bricks = create_bricks(1,10,this);
+        var bricks = create_bricks(4,10,this);
         
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
