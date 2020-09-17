@@ -71,6 +71,35 @@
         this.load.image('ball', 'assets/ball_temp.png');
     }
 
+    function ball_paddle_collision(ball, paddle)
+    {
+        if(ball.x < paddle.x - paddle.displayWidth/6)
+        {
+            // The ball is hitting the left third of the paddle
+            if(ball.body.velocity.x >= 0)
+            {
+                // The ball is moving to the right
+                // So reverse the ball's x velocity, making it move to the left
+                ball.setVelocityX(-ball.body.velocity.x); 
+            }
+        }
+        else if(ball.x > paddle.x + paddle.displayWidth/6)
+        {
+            // The ball is hitting the right third of the paddle
+            if(ball.body.velocity.x <= 0)
+            {
+                // The ball is moving to the left
+                // So reverse the ball's x velocity, making it move to the right
+                ball.setVelocityX(-ball.body.velocity.x); 
+            }
+        }
+        else
+        {
+            // The ball is hitting the center third of the paddle
+            // So just make the ball bounce, keeping its direction
+        }
+    }
+
     function create ()
     {
         var bricks = create_bricks(1,10,this);
@@ -85,7 +114,7 @@
         ball.setBounce(1); // Don't lose speed when bouncing
         ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
 
-        this.physics.add.collider(paddle, ball);
+        this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
