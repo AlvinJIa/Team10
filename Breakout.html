@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8" />
-    <title>Making your first Phaser 3 Game - Part 2</title>
+    <title>Breakout Clone</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -36,15 +36,21 @@
     var paddle_speed = 200;
     var initial_ball_speed_vector = (100, 100);
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
+    var game_offset = { x: 0, y: 0 };
+    var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
+    var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
+    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
     {
         // TODO: Make this generate a grid rather than one line
-        bricks = that.physics.add.staticGroup({
+        // TODO: Also, if some bricks are worth more than others,
+        // TODO: the bricks should be different colors to indicate this
+        var bricks = that.physics.add.staticGroup({
             key: 'brick',
             repeat: cols-1,
-            setXY: { x: 50, y: 50, stepX: 75 }
+            setXY: { x: first_brick_offset.x, y: first_brick_offset.y, stepX: 75 }
         });
 
         return bricks;
@@ -67,14 +73,13 @@
 
     function create ()
     {
-        // TODO: Further implement create_bricks
         var bricks = create_bricks(1,10,this);
         
-        paddle = this.physics.add.sprite(400,500,'paddle');
+        paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
         paddle.setImmovable(true); // Don't move when the ball hits the paddle
 
-        ball = this.physics.add.sprite(400,400,'ball'); 
+        ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball'); 
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
         ball.setVelocity(initial_ball_speed_vector);
         ball.setBounce(1); // Don't lose speed when bouncing
@@ -104,6 +109,10 @@
         {
             paddle.setVelocityX(0);
         }
+
+        // TODO: If we want the ball to speed up after certain conditions,
+        // TODO: check those conditions and update max_ball_speed and somehow
+        // TODO: increase the ball's current speed
 
     }
 
