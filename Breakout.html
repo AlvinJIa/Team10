@@ -43,7 +43,7 @@
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
     var brick_steps = { x: 75, y: 50 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
-    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 500 };
     var trap_initial_offset = { x: 0, y: 0 };
     var trap_area = {x = 800, y = 1};
 
@@ -160,6 +160,13 @@
         else
         {
             paddle.setVelocityX(0);
+        }
+
+        if (cursors.space.isDown) {
+           ball.setVelocity(initial_ball_speed_vector);
+        }
+        else {
+          ball.setVelocity(0,0);
         }
 
         // TODO: If we want the ball to speed up after certain conditions,
