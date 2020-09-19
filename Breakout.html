@@ -1,6 +1,6 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
+﻿<!doctype html>
+<html lang="en">
+<head>
     <meta charset="UTF-8" />
     <title>Breakout Clone</title>
     <script src="phaser.js"></script>
@@ -33,14 +33,19 @@
 
     var game = new Phaser.Game(config);
 
+    int life = 3;
+    bool winning = false;
+    bool losing = false;
     var paddle_speed = 200;
-    var initial_ball_speed_vector = (100, 100);
+    var initial_ball_speed_vector = (100, 200);
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
     var brick_steps = { x: 75, y: 50 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+    var trap_initial_offset = { x: 0, y: 0 };
+    var trap_area = {x = 800, y = 1};
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -83,7 +88,7 @@
             {
                 // The ball is moving to the right
                 // So reverse the ball's x velocity, making it move to the left
-                ball.setVelocityX(-ball.body.velocity.x); 
+                ball.setVelocityX(-ball.body.velocity.x);
             }
         }
         else if(ball.x > paddle.x + paddle.displayWidth/6)
@@ -93,7 +98,7 @@
             {
                 // The ball is moving to the left
                 // So reverse the ball's x velocity, making it move to the right
-                ball.setVelocityX(-ball.body.velocity.x); 
+                ball.setVelocityX(-ball.body.velocity.x);
             }
         }
         else
@@ -103,22 +108,37 @@
         }
     }
 
+    function ball_trap_collision(ball, trap)
+    {
+      if (life == 1)
+        losing = true;
+      else
+      {
+        life--;
+        paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
+        ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+      }
+    }
+
     function create ()
     {
         var bricks = create_bricks(4,10,this);
-        
+
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
         paddle.setImmovable(true); // Don't move when the ball hits the paddle
 
-        ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball'); 
+        ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
         ball.setVelocity(initial_ball_speed_vector);
         ball.setBounce(1); // Don't lose speed when bouncing
         ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
 
+        trap = this.physics.add.sprite()
+
         this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
+        this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
 
@@ -133,7 +153,7 @@
         {
             paddle.setVelocityX(-paddle_speed);
         }
-        else if (cursors.right.isDown) 
+        else if (cursors.right.isDown)
         {
             paddle.setVelocityX(paddle_speed);
         }
