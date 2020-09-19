@@ -33,9 +33,10 @@
 
     var game = new Phaser.Game(config);
 
-    int life = 3;
-    bool winning = false;
-    bool losing = false;
+    var life = 3;
+    var winning = false;
+    var losing = false;
+    var eject = false;
     var paddle_speed = 200;
     var initial_ball_speed_vector = (100, 200);
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
@@ -43,9 +44,9 @@
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
     var brick_steps = { x: 75, y: 50 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
-    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 500 };
-    var trap_initial_offset = { x: 0, y: 0 };
-    var trap_area = {x = 800, y = 1};
+    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+    //var trap_initial_offset = { x: 0, y: 0 };
+    //var trap_area = { x: 800, y: 1 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -130,7 +131,7 @@
 
         ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
-        ball.setVelocity(initial_ball_speed_vector);
+        ball.setVelocity(0,0);
         ball.setBounce(1); // Don't lose speed when bouncing
         ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
 
@@ -162,11 +163,12 @@
             paddle.setVelocityX(0);
         }
 
-        if (cursors.space.isDown) {
-           ball.setVelocity(initial_ball_speed_vector);
+        if (cursors.down.isDown) {
+          eject = ture;
         }
-        else {
-          ball.setVelocity(0,0);
+
+        if (eject) {
+          ball.setVelocity(100,200);
         }
 
         // TODO: If we want the ball to speed up after certain conditions,
