@@ -38,6 +38,7 @@
     var losing = false;
     var eject = false;
     var paddle_speed = 200;
+    var paddle2_speed = 200;
     var initial_ball_speed_vector = (100, 200);
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
     var game_offset = { x: 0, y: 0 };
@@ -46,6 +47,8 @@
     var brick_scales = { x: .8, y: .3 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
     var paddle_scales = { x: .5, y: .25 };
+    var paddle2_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 100 };
+    var paddle2_scales = { x: .5, y: .25 };
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
     var ball_scales = { x: .5, y: .5 };
     //var trap_initial_offset = { x: 0, y: 0 };
@@ -136,6 +139,12 @@
         paddle.scaleX = paddle_scales.x;
         paddle.scaleY = paddle_scales.y;
 
+        paddle2 = this.physics.add.sprite(paddle2_initial_offset.x,paddle2_initial_offset.y,'paddle');
+        paddle2.setCollideWorldBounds(true); // Don't allow movement outside the play area
+        paddle2.setImmovable(true); // Don't move when the ball hits the paddle
+        paddle2.scaleX = paddle2_scales.x;
+        paddle2.scaleY = paddle2_scales.y;
+
         ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
         ball.setVelocity(0,0);
@@ -147,6 +156,7 @@
         trap = this.physics.add.sprite()
 
         this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
+        this.physics.add.collider(ball, paddle2, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
         this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
 
@@ -162,14 +172,17 @@
         if(cursors.left.isDown)
         {
             paddle.setVelocityX(-paddle_speed);
+            paddle2.setVelocityX(-paddle2_speed);
         }
         else if (cursors.right.isDown)
         {
             paddle.setVelocityX(paddle_speed);
+            paddle2.setVelocityX(paddle2_speed);
         }
         else
         {
             paddle.setVelocityX(0);
+            paddle2.setVelocityX(0);
         }
 
         if (cursors.down.isDown) {
