@@ -42,9 +42,12 @@
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
-    var brick_steps = { x: 75, y: 50 };
+    var brick_steps = { x: 50, y: 25 };
+    var brick_scales = { x: .8, y: .3 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
+    var paddle_scales = { x: .5, y: .25 };
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+    var ball_scales = { x: .5, y: .5 };
     //var trap_initial_offset = { x: 0, y: 0 };
     //var trap_area = { x: 800, y: 1 };
 
@@ -57,9 +60,11 @@
         {
             for(j = 0; j < rows; j++)
             {
-                bricks.create(first_brick_offset.x + i*brick_steps.x,
+                var newBrick = bricks.create(first_brick_offset.x + i*brick_steps.x,
                               first_brick_offset.y + j*brick_steps.y,
                               'brick');
+                newBrick.scaleX = brick_scales.x;
+                newBrick.scaleY = brick_scales.y;
             }
         }
         return bricks;
@@ -123,17 +128,21 @@
 
     function create ()
     {
-        var bricks = create_bricks(4,10,this);
+        var bricks = create_bricks(4,15,this);
 
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
         paddle.setImmovable(true); // Don't move when the ball hits the paddle
+        paddle.scaleX = paddle_scales.x;
+        paddle.scaleY = paddle_scales.y;
 
         ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
         ball.setVelocity(0,0);
         ball.setBounce(1); // Don't lose speed when bouncing
         ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
+        ball.scaleX = ball_scales.x;
+        ball.scaleY = ball_scales.y;
 
         trap = this.physics.add.sprite()
 
