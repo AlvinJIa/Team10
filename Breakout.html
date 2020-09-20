@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Clone</title>
+    <title>Breakout Iteration 1 (Half Screen Bricks)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -41,7 +41,7 @@
     var initial_ball_speed_vector = (100, 200);
     var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
     var game_offset = { x: 0, y: 0 };
-    var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
+    var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 250 };
     var brick_steps = { x: 50, y: 25 };
     var brick_scales = { x: .8, y: .3 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
