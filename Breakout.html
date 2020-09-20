@@ -164,11 +164,12 @@
         }
 
         if (cursors.down.isDown) {
-          eject = ture;
+          eject = true;
         }
 
         if (eject) {
           ball.setVelocity(100,200);
+          eject = false;
         }
 
         // TODO: If we want the ball to speed up after certain conditions,
