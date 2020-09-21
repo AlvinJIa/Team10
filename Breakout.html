@@ -34,22 +34,24 @@
     var game = new Phaser.Game(config);
 
     var life = 3;
+    var numbreaks = 0;
     var winning = false;
     var losing = false;
     var eject = false;
+    var start = false;
     var paddle_speed = 200;
     var initial_ball_speed_vector = (100, 200);
-    var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
+    var max_ball_speed = 200; 
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
     var brick_steps = { x: 50, y: 25 };
     var brick_scales = { x: .8, y: .3 };
     var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
     var paddle_scales = { x: .5, y: .25 };
-    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 485 };
     var ball_scales = { x: .5, y: .5 };
-    //var trap_initial_offset = { x: 0, y: 0 };
-    //var trap_area = { x: 800, y: 1 };
+    var trap_initial_offset = { x: 0, y: 600 };
+    var trap_scale = {x : 2.5 , y : 1 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -65,6 +67,7 @@
                               'brick');
                 newBrick.scaleX = brick_scales.x;
                 newBrick.scaleY = brick_scales.y;
+                numbreaks++;
             }
         }
         return bricks;
@@ -74,7 +77,18 @@
     function ball_brick_collision(ball, brick)
     {
         brick.disableBody(true,true);
+        numbreaks--;
         // TODO: Tally score or detect when the player wins or something like that
+        if(numbreaks == 0)
+        {
+          winning = true;
+          winloseText.setText('You win!!!');
+          ball.setVelocity(0,0);
+          ball.body.x = ball_initial_offset.x-10;
+          ball.body.y = ball_initial_offset.y-10;
+          paddle.x = paddle_initial_offset.x;
+          paddle.y = paddle_initial_offset.y;
+        }
     }
 
     function preload ()
@@ -83,6 +97,7 @@
         this.load.image('paddle', 'assets/paddle_temp.png');
         this.load.image('brick', 'assets/brick_temp.png');
         this.load.image('ball', 'assets/ball_temp.png');
+        this.load.image('trap','assets/trap.png')
     }
 
     function ball_paddle_collision(ball, paddle)
@@ -116,13 +131,37 @@
 
     function ball_trap_collision(ball, trap)
     {
-      if (life == 1)
+      if (life === 1){
         losing = true;
+        winloseText.setText('You lose!!');
+        ball.setVelocity(0,0);
+        ball.body.x = ball_initial_offset.x-10;
+        ball.body.y = ball_initial_offset.y-10;
+        paddle.x = paddle_initial_offset.x;
+        paddle.y = paddle_initial_offset.y;
+        //Game.pause();
+        lifeText.setText('life: ' + 0);
+      }
+
       else
       {
         life--;
-        paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
-        ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
+        start = false;
+        eject = false;
+        ball.setVelocity(0,0);
+
+        paddle.x = paddle_initial_offset.x;
+        paddle.y = paddle_initial_offset.y;
+
+        ball.body.x = ball_initial_offset.x-10;
+        ball.body.y = ball_initial_offset.y-10;
+        //ball.x = ball_initial_offset.x;
+        //ball.y = ball_initial_offset.y;
+        //ball.scaleX = ball_scales.x;
+        //ball.scaleY = ball_scales.y;
+
+        lifeText.setText('life: ' + life);
+
       }
     }
 
@@ -144,7 +183,14 @@
         ball.scaleX = ball_scales.x;
         ball.scaleY = ball_scales.y;
 
-        trap = this.physics.add.sprite()
+        trap = this.physics.add.sprite(trap_initial_offset.x,trap_initial_offset.y,'trap');
+        trap.setCollideWorldBounds(true);
+        trap.setImmovable(true);
+        trap.scaleX = trap_scale.x;
+        trap.scaleY = trap_scale.y;
+
+        lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
+        winloseText = this.add.text(230, 200, '', { fontSize: '60px', fill: '#fff' });
 
         this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
@@ -172,13 +218,28 @@
             paddle.setVelocityX(0);
         }
 
-        if (cursors.down.isDown) {
-          eject = true;
-        }
+        if (cursors.down.isDown)
+          if(start == false)
+            eject = true;
 
         if (eject) {
-          ball.setVelocity(100,200);
+          ball.setVelocity(200,200);
           eject = false;
+          start = true
+        }
+        if(!start) {
+          if(cursors.left.isDown)
+          {
+              ball.setVelocityX(-paddle_speed);
+          }
+          else if (cursors.right.isDown)
+          {
+              ball.setVelocityX(paddle_speed);
+          }
+          else
+          {
+              ball.setVelocityX(0);
+          }
         }
 
         // TODO: If we want the ball to speed up after certain conditions,
