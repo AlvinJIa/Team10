@@ -49,6 +49,7 @@
     var paddle_scales = { x: .5, y: .25 };
     var paddle2_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 100 };
     var paddle2_scales = { x: .5, y: .25 };
+    var paddle2_AI_thinking_delay_in_ms = 500;
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
     var ball_scales = { x: .5, y: .5 };
     //var trap_initial_offset = { x: 0, y: 0 };
@@ -168,21 +169,29 @@
 
     function update ()
     {
+        if(ball.x < paddle2.x)
+        {
+            this.time.delayedCall(paddle2_AI_thinking_delay_in_ms, 
+                () => { paddle2.setVelocityX(-paddle2_speed)});
+        }
+        else
+        {
+            this.time.delayedCall(paddle2_AI_thinking_delay_in_ms, 
+                () => { paddle2.setVelocityX(paddle2_speed)});
+        }
+
         // Handle keyboard controls for moving the paddle
         if(cursors.left.isDown)
         {
             paddle.setVelocityX(-paddle_speed);
-            paddle2.setVelocityX(-paddle2_speed);
         }
         else if (cursors.right.isDown)
         {
             paddle.setVelocityX(paddle_speed);
-            paddle2.setVelocityX(paddle2_speed);
         }
         else
         {
             paddle.setVelocityX(0);
-            paddle2.setVelocityX(0);
         }
 
         if (cursors.down.isDown) {
