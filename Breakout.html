@@ -167,7 +167,7 @@
 
     function create ()
     {
-        var bricks = create_bricks(1,1,this);
+        var bricks = create_bricks(4,15,this);
 
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
