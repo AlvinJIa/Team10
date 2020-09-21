@@ -41,7 +41,7 @@
     var start = false;
     var paddle_speed = 200;
     var initial_ball_speed_vector = (100, 200);
-    var max_ball_speed = Math.sqrt(Math.pow(100,2) + Math.pow(100,2)); // Initial speed magnitude
+    var max_ball_speed = 200; 
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
     var brick_steps = { x: 50, y: 25 };
@@ -140,6 +140,7 @@
         paddle.x = paddle_initial_offset.x;
         paddle.y = paddle_initial_offset.y;
         //Game.pause();
+        lifeText.setText('life: ' + 0);
       }
 
       else
