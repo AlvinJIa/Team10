@@ -55,6 +55,8 @@
     var ball_scales = { x: .5, y: .5 };
     var trap_initial_offset = { x: 0, y: 600 };
     var trap_scale = {x : 2.5 , y : 1 };
+    var trap_top_initial_offset = { x: 0, y: 0 };
+    var trap_top_scale = {x : 2.5 , y : 1 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -91,6 +93,8 @@
           ball.body.y = ball_initial_offset.y-10;
           paddle.x = paddle_initial_offset.x;
           paddle.y = paddle_initial_offset.y;
+          paddle2.x = paddle2_initial_offset.x;
+          paddle2.y = paddle2_initial_offset.y;
         }
     }
 
@@ -142,6 +146,8 @@
         ball.body.y = ball_initial_offset.y-10;
         paddle.x = paddle_initial_offset.x;
         paddle.y = paddle_initial_offset.y;
+        paddle2.x = paddle2_initial_offset.x;
+        paddle2.y = paddle2_initial_offset.y;
         //Game.pause();
         lifeText.setText('life: ' + 0);
       }
@@ -155,6 +161,8 @@
 
         paddle.x = paddle_initial_offset.x;
         paddle.y = paddle_initial_offset.y;
+        paddle2.x = paddle2_initial_offset.x;
+        paddle2.y = paddle2_initial_offset.y;
 
         ball.body.x = ball_initial_offset.x-10;
         ball.body.y = ball_initial_offset.y-10;
@@ -198,6 +206,12 @@
         trap.scaleX = trap_scale.x;
         trap.scaleY = trap_scale.y;
 
+        trap_top = this.physics.add.sprite(trap_top_initial_offset.x,trap_top_initial_offset.y,'trap');
+        trap_top.setCollideWorldBounds(true);
+        trap_top.setImmovable(true);
+        trap_top.scaleX = trap_top_scale.x;
+        trap_top.scaleY = trap_top_scale.y;
+
         lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
         winloseText = this.add.text(230, 200, '', { fontSize: '60px', fill: '#fff' });
 
@@ -205,6 +219,7 @@
         this.physics.add.collider(ball, paddle2, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
         this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
+        this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
 
