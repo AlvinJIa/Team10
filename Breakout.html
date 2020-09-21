@@ -172,12 +172,12 @@
         if(cursors.left.isDown)
         {
             paddle.setVelocityX(-paddle_speed);
-            paddle2.setVelocityX(-paddle2_speed);
+            paddle2.setVelocityX(paddle2_speed);
         }
         else if (cursors.right.isDown)
         {
             paddle.setVelocityX(paddle_speed);
-            paddle2.setVelocityX(paddle2_speed);
+            paddle2.setVelocityX(-paddle2_speed);
         }
         else
         {
