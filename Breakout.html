@@ -49,7 +49,8 @@
     var paddle_scales = { x: .5, y: .25 };
     var paddle2_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 100 };
     var paddle2_scales = { x: .5, y: .25 };
-    var paddle2_AI_thinking_delay_in_ms = 500;
+    var paddle2_AI_thinking_delay_in_ms = 300;
+    var paddle2_AI_delta_factor = 1.0/6.0;
     var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 400 };
     var ball_scales = { x: .5, y: .5 };
     //var trap_initial_offset = { x: 0, y: 0 };
@@ -72,6 +73,16 @@
             }
         }
         return bricks;
+    }
+
+    function paddle2_AI_callback()
+    {
+        if(ball.x < paddle2.x - paddle2.displayWidth*paddle2_AI_delta_factor)
+            paddle2.setVelocityX(-paddle2_speed);
+        else if(ball.x > paddle2.x + paddle2.displayWidth*paddle2_AI_delta_factor)
+            paddle2.setVelocityX(paddle2_speed);
+        else
+            paddle2.setVelocityX(0);
     }
 
     // Callback function for when the ball hits a brick
@@ -145,6 +156,12 @@
         paddle2.setImmovable(true); // Don't move when the ball hits the paddle
         paddle2.scaleX = paddle2_scales.x;
         paddle2.scaleY = paddle2_scales.y;
+        // Start the AI
+        paddle2_timer = this.time.addEvent({
+            delay: paddle2_AI_thinking_delay_in_ms,
+            callback: paddle2_AI_callback,
+            loop: true
+        });
 
         ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
@@ -169,17 +186,6 @@
 
     function update ()
     {
-        if(ball.x < paddle2.x)
-        {
-            this.time.delayedCall(paddle2_AI_thinking_delay_in_ms, 
-                () => { paddle2.setVelocityX(-paddle2_speed)});
-        }
-        else
-        {
-            this.time.delayedCall(paddle2_AI_thinking_delay_in_ms, 
-                () => { paddle2.setVelocityX(paddle2_speed)});
-        }
-
         // Handle keyboard controls for moving the paddle
         if(cursors.left.isDown)
         {
