@@ -233,7 +233,7 @@
     function update ()
     {
         // Handle keyboard controls for moving the paddle
-        if (!cursors.down.isDown) {
+        if (!cursors.space.isDown) {
             paddle2.setVelocityX(0);
             if (cursors.left.isDown)
                 paddle.setVelocityX(-paddle_speed);
