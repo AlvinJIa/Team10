@@ -84,10 +84,11 @@
     // Callback function for when the ball hits a brick
     function ball_brick_collision(ball, brick)
     {
-        //var newpower = power.create(brick.body.x, brick.body.y, 'power');
-        //newpower.scaleX = power_scale.x;
-        //newpower.scaleY = power_scale.y;
-        //newpower.setVelocityY(power_speed);
+        var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
+        newpower.setImmovable(true); // Don't move when the ball hits the paddle
+        newpower.setVelocityY(power_speed);
+        this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+        lifeText.setText('life: ' + life);
 
         brick.disableBody(true,true);
         numbreaks--;
@@ -195,6 +196,8 @@
     function paddle_power_collision(paddle, power)
     {
         //I want to use a switch case to implement all the buffs, but I think we can just generate a random buff for this update.
+        life++;
+        power.disableBody(true, true);
     }
 
     function create ()
@@ -215,7 +218,7 @@
         background.setOrigin(0, 0);
         background.setScale(1.36, 1.45);
 
-        //power = this.physics.add.sprite(0, 0, 'power');
+        power = this.physics.add.sprite(0, 0, 'power');
 
         var bricks = create_bricks(4,10,this);
 
@@ -247,7 +250,7 @@
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
         this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
         this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
-        //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
+        this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
 
