@@ -1,8 +1,9 @@
-﻿<!doctype html>
+﻿
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Clone</title>
+    <title>Breakout Iteration 1 (Half Screen Bricks)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -16,8 +17,8 @@
 
     var config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: 600,
+        height: 800,
         physics: {
             default: 'arcade',
             arcade: {
@@ -39,19 +40,26 @@
     var losing = false;
     var eject = false;
     var start = false;
-    var paddle_speed = 200;
+    var paddle_speed = 300;
+    var paddle2_speed = 300;
     var initial_ball_speed_vector = (100, 200);
-    var max_ball_speed = 200; 
+    var max_ball_speed = 200;
     var game_offset = { x: 0, y: 0 };
-    var first_brick_offset = { x: game_offset.x + 50, y: game_offset.y + 50 };
+    var first_brick_offset = { x: game_offset.x + 75, y: game_offset.y + 350 };
     var brick_steps = { x: 50, y: 25 };
     var brick_scales = { x: .8, y: .3 };
-    var paddle_initial_offset = { x: game_offset.x + 400, y: game_offset.y + 500 };
+    var paddle_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 700 };
     var paddle_scales = { x: .5, y: .25 };
-    var ball_initial_offset = {x: game_offset.x + 400, y: game_offset.y + 485 };
+    var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
+    var paddle2_scales = { x: .5, y: .25 };
+    var ball_initial_offset = {x: game_offset.x + 300, y: game_offset.y + 685 };
     var ball_scales = { x: .5, y: .5 };
-    var trap_initial_offset = { x: 0, y: 600 };
+    var trap_initial_offset = { x: 0, y: 800 };
     var trap_scale = {x : 2.5 , y : 1 };
+    var trap_top_initial_offset = { x: 0, y: 0 };
+    var trap_top_scale = {x : 2.5 , y : 1 };
+    var power_speed = 200;
+    var power_scale = { x: 1, y: 1 };
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -76,6 +84,11 @@
     // Callback function for when the ball hits a brick
     function ball_brick_collision(ball, brick)
     {
+        //var newpower = power.create(brick.body.x, brick.body.y, 'power');
+        //newpower.scaleX = power_scale.x;
+        //newpower.scaleY = power_scale.y;
+        //newpower.setVelocityY(power_speed);
+
         brick.disableBody(true,true);
         numbreaks--;
         // TODO: Tally score or detect when the player wins or something like that
@@ -88,6 +101,8 @@
           ball.body.y = ball_initial_offset.y-10;
           paddle.x = paddle_initial_offset.x;
           paddle.y = paddle_initial_offset.y;
+          paddle2.x = paddle2_initial_offset.x;
+          paddle2.y = paddle2_initial_offset.y;
         }
     }
 
@@ -97,36 +112,44 @@
         this.load.image('paddle', 'assets/paddle_temp.png');
         this.load.image('brick', 'assets/brick_temp.png');
         this.load.image('ball', 'assets/ball_temp.png');
-        this.load.image('trap','assets/trap.png')
+        this.load.image('trap','assets/trap.png');
+        this.load.image('power','assets/bricks01.png');
+        this.load.image('background','assets/background.png');
     }
 
     function ball_paddle_collision(ball, paddle)
     {
-        if(ball.x < paddle.x - paddle.displayWidth/6)
-        {
-            // The ball is hitting the left third of the paddle
-            if(ball.body.velocity.x >= 0)
-            {
-                // The ball is moving to the right
-                // So reverse the ball's x velocity, making it move to the left
-                ball.setVelocityX(-ball.body.velocity.x);
-            }
-        }
-        else if(ball.x > paddle.x + paddle.displayWidth/6)
-        {
-            // The ball is hitting the right third of the paddle
-            if(ball.body.velocity.x <= 0)
-            {
-                // The ball is moving to the left
-                // So reverse the ball's x velocity, making it move to the right
-                ball.setVelocityX(-ball.body.velocity.x);
-            }
-        }
-        else
-        {
-            // The ball is hitting the center third of the paddle
-            // So just make the ball bounce, keeping its direction
-        }
+        //set velocity based on the postion collision
+        //ball.setVelocityX(600 * ((ball.body.x - paddle.x) / paddle.displayWidth))
+
+        //set velocity based on the speed of the paddle
+        ball.setVelocityX(ball.body.velocity.x + paddle.body.velocity.x);
+
+        //if(ball.x < paddle.x - paddle.displayWidth/6)
+        //{
+        //    // The ball is hitting the left third of the paddle
+        //    if(ball.body.velocity.x >= 0)
+        //    {
+        //        // The ball is moving to the right
+        //        // So reverse the ball's x velocity, making it move to the left
+        //        ball.setVelocityX(-ball.body.velocity.x);
+        //    }
+        //}
+        //else if(ball.x > paddle.x + paddle.displayWidth/6)
+        //{
+        //    // The ball is hitting the right third of the paddle
+        //    if(ball.body.velocity.x <= 0)
+        //    {
+        //        // The ball is moving to the left
+        //        // So reverse the ball's x velocity, making it move to the right
+        //        ball.setVelocityX(-ball.body.velocity.x);
+        //    }
+        //}
+        //else
+        //{
+        //    // The ball is hitting the center third of the paddle
+        //    // So just make the ball bounce, keeping its direction
+        //}
     }
 
     function ball_trap_collision(ball, trap)
@@ -139,6 +162,8 @@
         ball.body.y = ball_initial_offset.y-10;
         paddle.x = paddle_initial_offset.x;
         paddle.y = paddle_initial_offset.y;
+        paddle2.x = paddle2_initial_offset.x;
+        paddle2.y = paddle2_initial_offset.y;
         //Game.pause();
         lifeText.setText('life: ' + 0);
       }
@@ -152,6 +177,8 @@
 
         paddle.x = paddle_initial_offset.x;
         paddle.y = paddle_initial_offset.y;
+        paddle2.x = paddle2_initial_offset.x;
+        paddle2.y = paddle2_initial_offset.y;
 
         ball.body.x = ball_initial_offset.x-10;
         ball.body.y = ball_initial_offset.y-10;
@@ -165,15 +192,44 @@
       }
     }
 
+    function paddle_power_collision(paddle, power)
+    {
+        //I want to use a switch case to implement all the buffs, but I think we can just generate a random buff for this update.
+    }
+
     function create ()
     {
-        var bricks = create_bricks(4,15,this);
+        trap = this.physics.add.sprite(trap_initial_offset.x, trap_initial_offset.y, 'trap');
+        trap.setCollideWorldBounds(true);
+        trap.setImmovable(true);
+        trap.scaleX = trap_scale.x;
+        trap.scaleY = trap_scale.y;
+
+        trap_top = this.physics.add.sprite(trap_top_initial_offset.x, trap_top_initial_offset.y, 'trap');
+        trap_top.setCollideWorldBounds(true);
+        trap_top.setImmovable(true);
+        trap_top.scaleX = trap_top_scale.x;
+        trap_top.scaleY = trap_top_scale.y;
+
+        background = this.physics.add.sprite(0, 0, 'background');
+        background.setOrigin(0, 0);
+        background.setScale(1.36, 1.45);
+
+        //power = this.physics.add.sprite(0, 0, 'power');
+
+        var bricks = create_bricks(4,10,this);
 
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
         paddle.setImmovable(true); // Don't move when the ball hits the paddle
         paddle.scaleX = paddle_scales.x;
         paddle.scaleY = paddle_scales.y;
+
+        paddle2 = this.physics.add.sprite(paddle2_initial_offset.x,paddle2_initial_offset.y,'paddle');
+        paddle2.setCollideWorldBounds(true); // Don't allow movement outside the play area
+        paddle2.setImmovable(true); // Don't move when the ball hits the paddle
+        paddle2.scaleX = paddle2_scales.x;
+        paddle2.scaleY = paddle2_scales.y;
 
         ball = this.physics.add.sprite(ball_initial_offset.x,ball_initial_offset.y,'ball');
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
@@ -183,18 +239,15 @@
         ball.scaleX = ball_scales.x;
         ball.scaleY = ball_scales.y;
 
-        trap = this.physics.add.sprite(trap_initial_offset.x,trap_initial_offset.y,'trap');
-        trap.setCollideWorldBounds(true);
-        trap.setImmovable(true);
-        trap.scaleX = trap_scale.x;
-        trap.scaleY = trap_scale.y;
-
         lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
         winloseText = this.add.text(230, 200, '', { fontSize: '60px', fill: '#fff' });
 
         this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
+        this.physics.add.collider(ball, paddle2, ball_paddle_collision, null, this);
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
         this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
+        this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
+        //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
 
@@ -208,14 +261,17 @@
         if(cursors.left.isDown)
         {
             paddle.setVelocityX(-paddle_speed);
+            paddle2.setVelocityX(-paddle2_speed);
         }
         else if (cursors.right.isDown)
         {
             paddle.setVelocityX(paddle_speed);
+            paddle2.setVelocityX(paddle2_speed);
         }
         else
         {
             paddle.setVelocityX(0);
+            paddle2.setVelocityX(0);
         }
 
         if (cursors.down.isDown)
@@ -228,18 +284,7 @@
           start = true
         }
         if(!start) {
-          if(cursors.left.isDown)
-          {
-              ball.setVelocityX(-paddle_speed);
-          }
-          else if (cursors.right.isDown)
-          {
-              ball.setVelocityX(paddle_speed);
-          }
-          else
-          {
-              ball.setVelocityX(0);
-          }
+          ball.x = paddle.x;
         }
 
         // TODO: If we want the ball to speed up after certain conditions,
