@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 1 (Half Screen Bricks)</title>
+    <title>Breakout Iteration 4 (Paddle Slice and Power Ups)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -218,7 +218,7 @@
         background.setOrigin(0, 0);
         background.setScale(1.36, 1.45);
 
-        power = this.physics.add.sprite(0, 0, 'power');
+        //power = this.physics.add.sprite(0, 0, 'power');
 
         var bricks = create_bricks(4,10,this);
 
@@ -250,7 +250,7 @@
         this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
         this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
         this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
-        this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
+        //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
         // TODO: Add a collider on the bottom of the screen that makes the player lose a life
 
@@ -277,7 +277,7 @@
             paddle2.setVelocityX(0);
         }
 
-        if (cursors.down.isDown)
+        if (cursors.space.isDown)
           if(start == false)
             eject = true;
 
