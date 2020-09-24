@@ -43,7 +43,7 @@
     var paddle_speed = 300;
     var paddle2_speed = 300;
     var initial_ball_speed_vector = (100, 200);
-    var max_ball_speed = 200;
+    var max_ball_speed = 250;
     var cur_max_ball_speed = max_ball_speed;
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 75, y: game_offset.y + 350 };
@@ -62,7 +62,10 @@
     var power_speed = 200;
     var power_scale = { x: 1, y: 1 };
     var power_chance_out_of_100 = 10;
-    var num_balls = 0;
+    var max_slow_down_duration_in_ms = 10000; // 10 seconds
+    var ball_speed_slow_factor = 1.0/2.0;
+    var slow_down_timers = [];
+    var balls = [];
 
     function reset_ball()
     {
@@ -71,7 +74,8 @@
                         ball_initial_offset.y,
                         true,
                         true);
-        num_balls = 1;
+        balls.push(ball);
+        // TODO: Clear all the slow downs and other power ups
     }
 
     function spawn_two_balls(that)
@@ -81,25 +85,26 @@
         newBall1.setCollideWorldBounds(true);
         newBall1.setVelocity(-200,-200); // Up and to the left
         newBall1.setBounce(1);
-        newBall1.setMaxVelocity(cur_max_ball_speed);
+        newBall1.body.setMaxSpeed(cur_max_ball_speed);
         newBall1.scaleX = ball_scales.x;
         newBall1.scaleY = ball_scales.y;
-        num_balls++;
+        balls.push(newBall1);
         that.physics.add.collider(newBall1, paddle, ball_paddle_collision, null, that);
         that.physics.add.collider(newBall1, paddle2, ball_paddle_collision, null, that);
         that.physics.add.collider(newBall1, bricks, ball_brick_collision, null, that);
         that.physics.add.collider(newBall1, trap, ball_trap_collision, null, that);
         that.physics.add.collider(newBall1, trap_top, ball_trap_collision, null, that);
+        
 
         var newBall2 = that.physics.add.sprite(paddle.x + paddle.displayWidth/3,
                                                 ball_initial_offset.y,'ball');
         newBall2.setCollideWorldBounds(true);
         newBall2.setVelocity(200,-200); // Up and to the right
         newBall2.setBounce(1);
-        newBall2.setMaxVelocity(cur_max_ball_speed);
+        newBall2.body.setMaxSpeed(cur_max_ball_speed);
         newBall2.scaleX = ball_scales.x;
         newBall2.scaleY = ball_scales.y;
-        num_balls++;
+        balls.push(newBall2);
         that.physics.add.collider(newBall2, paddle, ball_paddle_collision, null, that);
         that.physics.add.collider(newBall2, paddle2, ball_paddle_collision, null, that);
         that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
@@ -173,40 +178,24 @@
 
         //set velocity based on the speed of the paddle
         ball.setVelocityX(ball.body.velocity.x + paddle.body.velocity.x);
-
-        //if(ball.x < paddle.x - paddle.displayWidth/6)
-        //{
-        //    // The ball is hitting the left third of the paddle
-        //    if(ball.body.velocity.x >= 0)
-        //    {
-        //        // The ball is moving to the right
-        //        // So reverse the ball's x velocity, making it move to the left
-        //        ball.setVelocityX(-ball.body.velocity.x);
-        //    }
-        //}
-        //else if(ball.x > paddle.x + paddle.displayWidth/6)
-        //{
-        //    // The ball is hitting the right third of the paddle
-        //    if(ball.body.velocity.x <= 0)
-        //    {
-        //        // The ball is moving to the left
-        //        // So reverse the ball's x velocity, making it move to the right
-        //        ball.setVelocityX(-ball.body.velocity.x);
-        //    }
-        //}
-        //else
-        //{
-        //    // The ball is hitting the center third of the paddle
-        //    // So just make the ball bounce, keeping its direction
-        //}
+        // Since balls now have a max speed rather than max X velocity, adjust for loss of Y velocity
+        if(Math.abs(ball.body.velocity.y) < cur_max_ball_speed/2)
+        {
+            ball.setVelocityY(Math.sign(ball.body.velocity.y)*cur_max_ball_speed/2);
+            
+        }
+        // And finally make sure the ball never travels slower than the current max speed
+        ball.setVelocity(ball.body.velocity.normalize().x*cur_max_ball_speed, 
+                         ball.body.velocity.normalize().y*cur_max_ball_speed);
     }
 
     function ball_trap_collision(ball, trap)
     {
         ball.disableBody(true,true);
-        num_balls--;
+        var index = balls.indexOf(ball);
+        balls.splice(index, 1); // Remove this ball from the array
 
-        if(num_balls === 0)
+        if(balls.length === 0)
         {
             if (life === 1){
                 losing = true;
@@ -257,7 +246,12 @@
                 spawn_two_balls(this);
                 break;
             case 1: // slower ball
-
+                slow_down_timers.push(max_slow_down_duration_in_ms);
+                // Slow down balls
+                cur_max_ball_speed *= ball_speed_slow_factor;
+                balls.forEach((val) => {
+                    val.body.setMaxSpeed(cur_max_ball_speed);
+                });
                 break;
             case 2: // shorter paddle
 
@@ -306,10 +300,10 @@
         ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
         ball.setVelocity(0,0);
         ball.setBounce(1); // Don't lose speed when bouncing
-        ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
+        ball.body.setMaxSpeed(max_ball_speed); // Never exceed max_ball_speed
         ball.scaleX = ball_scales.x;
         ball.scaleY = ball_scales.y;
-        num_balls++;
+        balls.push(ball);
 
         lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
         winloseText = this.add.text(230, 200, '', { fontSize: '60px', fill: '#fff' });
@@ -327,7 +321,7 @@
 
     }
 
-    function update ()
+    function update (time, deltaTime)
     {
         // Handle keyboard controls for moving the paddle
         if(cursors.left.isDown)
@@ -359,10 +353,20 @@
           ball.x = paddle.x;
         }
 
-        // TODO: If we want the ball to speed up after certain conditions,
-        // TODO: check those conditions and update max_ball_speed and somehow
-        // TODO: increase the ball's current speed
-
+        // Count down each slow down timer
+        slow_down_timers.forEach((val,i) => {
+            slow_down_timers[i] = val - deltaTime;
+            if(val - deltaTime < 0)
+            {
+                cur_max_ball_speed *= 1.0/ball_speed_slow_factor; // Speed the balls back up
+                balls.forEach((val) => {
+                    val.body.setMaxSpeed(cur_max_ball_speed);
+                    val.setVelocity(val.body.velocity.normalize().x*cur_max_ball_speed, 
+                                    val.body.velocity.normalize().y*cur_max_ball_speed);
+                });
+                slow_down_timers.splice(i,1);
+            }
+        });
     }
 
 
