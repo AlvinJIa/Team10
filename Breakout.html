@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 4 (Paddle Slice and Power Ups)</title>
+    <title>Breakout Iteration 4 (Paddle Slice and Art)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -84,11 +84,11 @@
     // Callback function for when the ball hits a brick
     function ball_brick_collision(ball, brick)
     {
-        var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
-        newpower.setImmovable(true); // Don't move when the ball hits the paddle
-        newpower.setVelocityY(power_speed);
-        this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
-        lifeText.setText('life: ' + life);
+        // var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
+        // newpower.setImmovable(true); // Don't move when the ball hits the paddle
+        // newpower.setVelocityY(power_speed);
+        // this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+        // lifeText.setText('life: ' + life);
 
         brick.disableBody(true,true);
         numbreaks--;
