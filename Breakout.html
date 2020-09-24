@@ -48,7 +48,7 @@
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 75, y: game_offset.y + 350 };
     var brick_steps = { x: 50, y: 25 };
-    var brick_scales = { x: .8, y: .3 };
+    var brick_scales = { x: 1.5, y: 1 };
     var paddle_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 700 };
     var paddle_scales = { x: .5, y: .25 };
     var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
@@ -123,7 +123,8 @@
             {
                 var newBrick = bricks.create(first_brick_offset.x + i*brick_steps.x,
                               first_brick_offset.y + j*brick_steps.y,
-                              'brick');
+                              'power');
+                newBrick.anims.play('brick');
                 newBrick.scaleX = brick_scales.x;
                 newBrick.scaleY = brick_scales.y;
                 numbreaks++;
@@ -138,6 +139,9 @@
         if(Math.floor(Math.random() * 100) < power_chance_out_of_100)
         {
             var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
+            newpower.scaleX = brick_scales.x;
+            newpower.scaleY = brick_scales.y;
+            newpower.anims.play('power');
             newpower.setImmovable(true); // Don't move when the ball hits the paddle
             newpower.setVelocityY(power_speed);
             this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
@@ -167,7 +171,7 @@
         this.load.image('brick', 'assets/brick_temp.png');
         this.load.image('ball', 'assets/ball_temp.png');
         this.load.image('trap','assets/trap.png');
-        this.load.image('power','assets/bricks01.png');
+        this.load.spritesheet('power','assets/bricks01.png', {frameWidth: 34, frameHeight: 20});
         this.load.image('background','assets/background.png');
     }
 
@@ -315,7 +319,17 @@
         this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
         //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
-        // TODO: Add a collider on the bottom of the screen that makes the player lose a life
+        this.anims.create({
+            key: 'brick',
+            frames: [ {key: 'power', frame: 0}],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'power',
+            frames: [ {key: 'power', frame: 2}],
+            frameRate: 20
+        });
 
         cursors = this.input.keyboard.createCursorKeys();
 
