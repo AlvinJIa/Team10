@@ -44,6 +44,7 @@
     var paddle2_speed = 300;
     var initial_ball_speed_vector = (100, 200);
     var max_ball_speed = 200;
+    var cur_max_ball_speed = max_ball_speed;
     var game_offset = { x: 0, y: 0 };
     var first_brick_offset = { x: game_offset.x + 75, y: game_offset.y + 350 };
     var brick_steps = { x: 50, y: 25 };
@@ -60,6 +61,51 @@
     var trap_top_scale = {x : 2.5 , y : 1 };
     var power_speed = 200;
     var power_scale = { x: 1, y: 1 };
+    var power_chance_out_of_100 = 10;
+    var num_balls = 0;
+
+    function reset_ball()
+    {
+        ball.enableBody(true,
+                        ball_initial_offset.x,
+                        ball_initial_offset.y,
+                        true,
+                        true);
+        num_balls = 1;
+    }
+
+    function spawn_two_balls(that)
+    {
+        var newBall1 = that.physics.add.sprite(paddle.x - paddle.displayWidth/3,
+                                                       ball_initial_offset.y,'ball');
+        newBall1.setCollideWorldBounds(true);
+        newBall1.setVelocity(-200,-200); // Up and to the left
+        newBall1.setBounce(1);
+        newBall1.setMaxVelocity(cur_max_ball_speed);
+        newBall1.scaleX = ball_scales.x;
+        newBall1.scaleY = ball_scales.y;
+        num_balls++;
+        that.physics.add.collider(newBall1, paddle, ball_paddle_collision, null, that);
+        that.physics.add.collider(newBall1, paddle2, ball_paddle_collision, null, that);
+        that.physics.add.collider(newBall1, bricks, ball_brick_collision, null, that);
+        that.physics.add.collider(newBall1, trap, ball_trap_collision, null, that);
+        that.physics.add.collider(newBall1, trap_top, ball_trap_collision, null, that);
+
+        var newBall2 = that.physics.add.sprite(paddle.x + paddle.displayWidth/3,
+                                                ball_initial_offset.y,'ball');
+        newBall2.setCollideWorldBounds(true);
+        newBall2.setVelocity(200,-200); // Up and to the right
+        newBall2.setBounce(1);
+        newBall2.setMaxVelocity(cur_max_ball_speed);
+        newBall2.scaleX = ball_scales.x;
+        newBall2.scaleY = ball_scales.y;
+        num_balls++;
+        that.physics.add.collider(newBall2, paddle, ball_paddle_collision, null, that);
+        that.physics.add.collider(newBall2, paddle2, ball_paddle_collision, null, that);
+        that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
+        that.physics.add.collider(newBall2, trap, ball_trap_collision, null, that);
+        that.physics.add.collider(newBall2, trap_top, ball_trap_collision, null, that);
+    }
 
     // Function for creating the grid of bricks
     function create_bricks(rows, cols, that)
@@ -84,11 +130,13 @@
     // Callback function for when the ball hits a brick
     function ball_brick_collision(ball, brick)
     {
-        var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
-        newpower.setImmovable(true); // Don't move when the ball hits the paddle
-        newpower.setVelocityY(power_speed);
-        this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
-        lifeText.setText('life: ' + life);
+        if(Math.floor(Math.random() * 100) < power_chance_out_of_100)
+        {
+            var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
+            newpower.setImmovable(true); // Don't move when the ball hits the paddle
+            newpower.setVelocityY(power_speed);
+            this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+        }
 
         brick.disableBody(true,true);
         numbreaks--;
@@ -155,49 +203,69 @@
 
     function ball_trap_collision(ball, trap)
     {
-      if (life === 1){
-        losing = true;
-        winloseText.setText('You lose!!');
-        ball.setVelocity(0,0);
-        ball.body.x = ball_initial_offset.x-10;
-        ball.body.y = ball_initial_offset.y-10;
-        paddle.x = paddle_initial_offset.x;
-        paddle.y = paddle_initial_offset.y;
-        paddle2.x = paddle2_initial_offset.x;
-        paddle2.y = paddle2_initial_offset.y;
-        //Game.pause();
-        lifeText.setText('life: ' + 0);
-      }
+        ball.disableBody(true,true);
+        num_balls--;
 
-      else
-      {
-        life--;
-        start = false;
-        eject = false;
-        ball.setVelocity(0,0);
+        if(num_balls === 0)
+        {
+            if (life === 1){
+                losing = true;
+                winloseText.setText('You lose!!');
+                ball.setVelocity(0,0);
+                ball.body.x = ball_initial_offset.x-10;
+                ball.body.y = ball_initial_offset.y-10;
+                paddle.x = paddle_initial_offset.x;
+                paddle.y = paddle_initial_offset.y;
+                paddle2.x = paddle2_initial_offset.x;
+                paddle2.y = paddle2_initial_offset.y;
+                //Game.pause();
+                lifeText.setText('life: ' + 0);
+            }
 
-        paddle.x = paddle_initial_offset.x;
-        paddle.y = paddle_initial_offset.y;
-        paddle2.x = paddle2_initial_offset.x;
-        paddle2.y = paddle2_initial_offset.y;
+            else
+            {
+                life--;
+                start = false;
+                eject = false;
+                ball.setVelocity(0,0);
 
-        ball.body.x = ball_initial_offset.x-10;
-        ball.body.y = ball_initial_offset.y-10;
-        //ball.x = ball_initial_offset.x;
-        //ball.y = ball_initial_offset.y;
-        //ball.scaleX = ball_scales.x;
-        //ball.scaleY = ball_scales.y;
+                paddle.x = paddle_initial_offset.x;
+                paddle.y = paddle_initial_offset.y;
+                paddle2.x = paddle2_initial_offset.x;
+                paddle2.y = paddle2_initial_offset.y;
 
-        lifeText.setText('life: ' + life);
+                reset_ball();
+                //ball.x = ball_initial_offset.x;
+                //ball.y = ball_initial_offset.y;
+                //ball.scaleX = ball_scales.x;
+                //ball.scaleY = ball_scales.y;
 
-      }
+                lifeText.setText('life: ' + life);
+
+            }
+        }
     }
 
     function paddle_power_collision(paddle, power)
     {
         //I want to use a switch case to implement all the buffs, but I think we can just generate a random buff for this update.
-        life++;
         power.disableBody(true, true);
+
+        switch(Math.floor(Math.random()*4))
+        {
+            case 0: // triple ball
+                spawn_two_balls(this);
+                break;
+            case 1: // slower ball
+
+                break;
+            case 2: // shorter paddle
+
+                break;
+            case 3: // regenerate bricks
+
+                break;
+        }
     }
 
     function create ()
@@ -220,7 +288,7 @@
 
         //power = this.physics.add.sprite(0, 0, 'power');
 
-        var bricks = create_bricks(4,10,this);
+        bricks = create_bricks(4,10,this);
 
         paddle = this.physics.add.sprite(paddle_initial_offset.x,paddle_initial_offset.y,'paddle');
         paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
@@ -241,6 +309,7 @@
         ball.setMaxVelocity(max_ball_speed); // Never exceed max_ball_speed
         ball.scaleX = ball_scales.x;
         ball.scaleY = ball_scales.y;
+        num_balls++;
 
         lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
         winloseText = this.add.text(230, 200, '', { fontSize: '60px', fill: '#fff' });
