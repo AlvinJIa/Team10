@@ -173,6 +173,7 @@
         this.load.image('trap','assets/trap.png');
         this.load.spritesheet('power','assets/bricks01.png', {frameWidth: 34, frameHeight: 20});
         this.load.image('background','assets/background.png');
+        this.load.spritesheet('snow','assets/snow_sheet.png', {frameWidth: 800, frameHeight:800});
     }
 
     function ball_paddle_collision(ball, paddle)
@@ -268,6 +269,26 @@
 
     function create ()
     {
+
+        this.anims.create({
+            key: 'brick',
+            frames: [ {key: 'power', frame: 0}],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'power',
+            frames: [ {key: 'power', frame: 2}],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'snow',
+            frames: this.anims.generateFrameNumbers('snow', {start:0, end:161}),
+            frameRate: 20,
+            repeat: -1
+        });
+
         trap = this.physics.add.sprite(trap_initial_offset.x, trap_initial_offset.y, 'trap');
         trap.setCollideWorldBounds(true);
         trap.setImmovable(true);
@@ -282,7 +303,12 @@
 
         background = this.physics.add.sprite(0, 0, 'background');
         background.setOrigin(0, 0);
-        background.setScale(1.36, 1.45);
+        background.setScale(1.36, 1.48);
+
+        snowField = this.physics.add.sprite(0,0,'snow');
+        snowField.setOrigin(0,0);
+        snowField.setScale(1,1,);
+        snowField.anims.play('snow');
 
         //power = this.physics.add.sprite(0, 0, 'power');
 
@@ -319,17 +345,6 @@
         this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
         //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
-        this.anims.create({
-            key: 'brick',
-            frames: [ {key: 'power', frame: 0}],
-            frameRate: 20
-        });
-
-        this.anims.create({
-            key: 'power',
-            frames: [ {key: 'power', frame: 2}],
-            frameRate: 20
-        });
 
         cursors = this.input.keyboard.createCursorKeys();
 
