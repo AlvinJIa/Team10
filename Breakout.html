@@ -261,7 +261,7 @@
                     while (count < 7) {
                         var i = Math.floor(Math.random() * 10);
                         var j = Math.floor(Math.random() * 7);
-                        var newBrick = this.bricks.physics.add.sprite(first_brick_offset.x + i * brick_steps.x,
+                        var newBrick = bricks.create(first_brick_offset.x + i * brick_steps.x,
                             first_brick_offset.y + (j-1) * brick_steps.y, 'power');
                         newBrick.anims.play('brick1');
                         newBrick.scaleX = brick_scales.x;
