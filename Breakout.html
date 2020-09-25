@@ -319,19 +319,16 @@
             
 
             snowField = this.add.sprite(400, 400, 'snow');
-            //snowField.setOrigin(0, 0);
             snowField.setScale(1, 1);
-            // var frameNames = this.anims.generateFrameNames('snow', {
-            //     start: 0, end: 161, zeroPad: 4,
-            //     prefix: 'assets/', suffix: '.png'
-            // });
             var frameNames = this.anims.generateFrameNames('snow');
-            console.log(frameNames);
             this.anims.create({key: 'snow', frames: frameNames, frameRate: 15, repeat: -1});
+            this.anims.create({key: 'snowstorm', frames: frameNames, frameRate: 30, repeat: -1});
             snowField.anims.play('snow');
             //snowField.scaleX = .5;
             //snowField.scaleY = .5;
             snowField.angle = 180;
+            // TODO: Make a function that switches this to angle = 140 or 220 and plays snowstorm
+            // TODO: Then apply physics to make the ball move to the right or left respectively
 
             background = this.physics.add.sprite(0, 0, 'background');
             background.setOrigin(0, 0);
