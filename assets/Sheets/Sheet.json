@@ -1,0 +1,3841 @@
+{
+	"textures": [
+		{
+			"image": "Sheet-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0000_帧-162.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0001_帧-161.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0002_帧-160.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0003_帧-159.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0004_帧-158.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0005_帧-157.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0006_帧-156.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0007_帧-155.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-2.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0008_帧-154.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0009_帧-153.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0010_帧-152.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0011_帧-151.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-3.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0012_帧-150.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0013_帧-149.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0014_帧-148.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0015_帧-147.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-4.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0016_帧-146.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0017_帧-145.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0018_帧-144.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0019_帧-143.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-5.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0020_帧-142.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0021_帧-141.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0022_帧-140.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0023_帧-139.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-6.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0024_帧-138.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0025_帧-137.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0026_帧-136.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0028_帧-134.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-7.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0029_帧-133.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0030_帧-132.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0031_帧-131.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0032_帧-130.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-8.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0033_帧-129.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0034_帧-128.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0035_帧-127.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0036_帧-126.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-9.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0037_帧-125.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0038_帧-124.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0039_帧-123.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0040_帧-122.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-10.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0041_帧-121.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0042_帧-120.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0043_帧-119.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0044_帧-118.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-11.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0045_帧-117.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0046_帧-116.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0047_帧-115.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0048_帧-114.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-12.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0049_帧-113.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0050_帧-112.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0051_帧-111.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0052_帧-110.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-13.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0053_帧-109.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0054_帧-108.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0055_帧-107.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0056_帧-106.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-14.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0057_帧-105.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0058_帧-104.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0059_帧-103.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0060_帧-102.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-15.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0061_帧-101.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0062_帧-100.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0063_帧-99.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0064_帧-98.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-16.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0065_帧-97.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0066_帧-96.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0067_帧-95.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0068_帧-94.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-17.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0069_帧-93.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0070_帧-92.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0071_帧-91.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0072_帧-90.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-18.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0073_帧-89.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0074_帧-88.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0075_帧-87.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0076_帧-86.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-19.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0077_帧-85.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0078_帧-84.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0079_帧-83.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0080_帧-82.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-20.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0081_帧-81.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0082_帧-80.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0083_帧-79.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0084_帧-78.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-21.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0085_帧-77.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0086_帧-76.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0087_帧-75.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0088_帧-74.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-22.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0089_帧-73.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0090_帧-72.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0091_帧-71.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0092_帧-70.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-23.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0093_帧-69.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0094_帧-68.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0095_帧-67.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0096_帧-66.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-24.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0097_帧-65.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0098_帧-64.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0099_帧-63.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0100_帧-62.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-25.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0101_帧-61.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0102_帧-60.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0103_帧-59.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0104_帧-58.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-26.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0105_帧-57.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0106_帧-56.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0107_帧-55.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0108_帧-54.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-27.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0109_帧-53.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0110_帧-52.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0111_帧-51.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0112_帧-50.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-28.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0113_帧-49.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0114_帧-48.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0115_帧-47.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0116_帧-46.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-29.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0117_帧-45.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0118_帧-44.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0119_帧-43.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0120_帧-42.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-30.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0121_帧-41.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0122_帧-40.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0123_帧-39.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0124_帧-38.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-31.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0125_帧-37.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0126_帧-36.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0127_帧-35.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0128_帧-34.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-32.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0129_帧-33.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0130_帧-32.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0131_帧-31.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0132_帧-30.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-33.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0133_帧-29.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0134_帧-28.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0135_帧-27.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0136_帧-26.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-34.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0137_帧-25.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0138_帧-24.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0139_帧-23.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0140_帧-22.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-35.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0141_帧-21.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0142_帧-20.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0143_帧-19.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0144_帧-18.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-36.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0145_帧-17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0146_帧-16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0147_帧-15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0148_帧-14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-37.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0149_帧-13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0150_帧-12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0151_帧-11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0152_帧-10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-38.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0153_帧-9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0154_帧-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0155_帧-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0156_帧-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-39.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1604
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0157_帧-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0158_帧-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0159_帧-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				},
+				{
+					"filename": "Snow_0160_帧-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 803,
+						"y": 803,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		},
+		{
+			"image": "Sheet-40.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 802,
+				"h": 802
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Snow_0161_帧-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 800
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 800
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 800,
+						"h": 800
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:91085dbf2b212903888bd3d0cf60eb31:166ad3743f80f18757f05f6639763e53:40047e617fe41aa9e036b8f3bf7e07dd$"
+	}
+}

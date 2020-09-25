@@ -170,9 +170,12 @@
             this.load.image('trap', 'assets/trap.png');
             this.load.spritesheet('power', 'assets/bricks01.png', { frameWidth: 34, frameHeight: 20 });
             this.load.image('background', 'assets/background.png');
-            this.load.spritesheet('snow', 'assets/snow_sheet.png', { frameWidth: 800, frameHeight: 800 });
+            //this.load.spritesheet('snow', 'assets/snow_sheet2.png', { frameWidth: 1600, 
+            //                                                          frameHeight: 1600 });
             this.load.image('win', 'assets/win.png');
             this.load.image('lose', 'assets/lose.png');
+            //this.load.multiatlas('snow', 'assets/Sheet2.json','assets');
+            this.load.multiatlas('snow', 'assets/Sheets/Sheet.json', 'assets/Sheets')
         }
 
         function ball_paddle_collision(ball, paddle) {
@@ -294,12 +297,12 @@
                 frameRate: 20
             });
 
-            this.anims.create({
-                key: 'snow',
-                frames: this.anims.generateFrameNumbers('snow', { start: 0, end: 161 }),
-                frameRate: 24,
-                repeat: -1
-            });
+            // this.anims.create({
+            //     key: 'snow',
+            //     frames: this.anims.generateFrameNumbers('snow', { start: 0, end: 161 }),
+            //     frameRate: 5,
+            //     repeat: -1
+            // });
 
             trap = this.physics.add.sprite(trap_initial_offset.x, trap_initial_offset.y, 'trap');
             trap.setCollideWorldBounds(true);
@@ -317,10 +320,20 @@
             background.setOrigin(0, 0);
             background.setScale(1.36, 1.48);
 
-            snowField = this.physics.add.sprite(0, 0, 'snow');
-            snowField.setOrigin(0, 0);
-            snowField.setScale(1, 1,);
+            snowField = this.add.sprite(400, 400, 'snow');
+            //snowField.setOrigin(0, 0);
+            snowField.setScale(1, 1);
+            // var frameNames = this.anims.generateFrameNames('snow', {
+            //     start: 0, end: 161, zeroPad: 4,
+            //     prefix: 'assets/', suffix: '.png'
+            // });
+            var frameNames = this.anims.generateFrameNames('snow');
+            console.log(frameNames);
+            this.anims.create({key: 'snow', frames: frameNames, frameRate: 10, repeat: -1});
             snowField.anims.play('snow');
+            //snowField.scaleX = .5;
+            //snowField.scaleY = .5;
+            snowField.angle = 180;
 
             //power = this.physics.add.sprite(0, 0, 'power');
 
