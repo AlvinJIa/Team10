@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 4.01 (Power Ups)</title>
+    <title>Breakout Iteration 5 (Snow Art and Future Iterations)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -327,7 +327,7 @@
             // });
             var frameNames = this.anims.generateFrameNames('snow');
             console.log(frameNames);
-            this.anims.create({key: 'snow', frames: frameNames, frameRate: 10, repeat: -1});
+            this.anims.create({key: 'snow', frames: frameNames, frameRate: 15, repeat: -1});
             snowField.anims.play('snow');
             //snowField.scaleX = .5;
             //snowField.scaleY = .5;
