@@ -123,10 +123,10 @@
             that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
             that.physics.add.collider(newBall2, trap, ball_trap_collision, null, that);
             that.physics.add.collider(newBall2, trap_top, ball_trap_collision, null, that);
-            that.physics.add.collider(ball, portal1, ball_portal_collision, null, that);
-            that.physics.add.collider(ball, portal2, ball_portal_collision, null, that);
-            that.physics.add.collider(ball, portal3, ball_portal_collision, null, that);
-            that.physics.add.collider(ball, portal4, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall2, portal1, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall2, portal2, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall2, portal3, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall2, portal4, ball_portal_collision, null, that);
         }
 
         // Function for creating the grid of bricks
