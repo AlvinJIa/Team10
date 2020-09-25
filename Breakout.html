@@ -41,6 +41,7 @@
         var losing = false;
         var eject = false;
         var start = false;
+        var portaled = false;
         var paddle_speed = 300;
         var paddle2_speed = 300;
         var initial_ball_speed_vector = (100, 200);
@@ -60,6 +61,11 @@
         var trap_scale = { x: 2.5, y: 1 };
         var trap_top_initial_offset = { x: 0, y: 0 };
         var trap_top_scale = { x: 2.5, y: 1 };
+        var portal1_initial_offset = { x: 95, y: 275 };
+        var portal2_initial_offset = { x: 505, y: 275 };
+        var portal3_initial_offset = { x: 95, y: 515 };
+        var portal4_initial_offset = { x: 505, y: 515 };
+        var portal_scales = { x: 0.1, y: 0.1 };
         var power_speed = 200;
         var power_scale = { x: 1, y: 1 };
         var power_chance_out_of_100 = 25;
@@ -81,6 +87,9 @@
         function reset_paddle() {
             paddle.setScale(0.5, 0.25);
             paddle2.setScale(0.5, 0.25);
+        }
+        function reset_portal() {
+            portaled = false;
         }
 
         function spawn_two_balls(that) {
@@ -114,6 +123,10 @@
             that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
             that.physics.add.collider(newBall2, trap, ball_trap_collision, null, that);
             that.physics.add.collider(newBall2, trap_top, ball_trap_collision, null, that);
+            that.physics.add.collider(ball, portal1, ball_portal_collision, null, that);
+            that.physics.add.collider(ball, portal2, ball_portal_collision, null, that);
+            that.physics.add.collider(ball, portal3, ball_portal_collision, null, that);
+            that.physics.add.collider(ball, portal4, ball_portal_collision, null, that);
         }
 
         // Function for creating the grid of bricks
@@ -173,6 +186,7 @@
             this.load.spritesheet('snow', 'assets/snow_sheet.png', { frameWidth: 800, frameHeight: 800 });
             this.load.image('win', 'assets/win.png');
             this.load.image('lose', 'assets/lose.png');
+            this.load.image('portal','assets/portal.png');
         }
 
         function ball_paddle_collision(ball, paddle) {
@@ -274,6 +288,25 @@
             }
         }
 
+        function ball_portal_collision(ball, portal) {
+            if (!portaled) {
+                var _x = Math.floor(Math.random() * 400) - 200;
+                var _y = Math.floor(Math.random() * 1);
+                if (_y === 1) _y = 200;
+                else _y = -200;
+                if (ball.body.y > 400) {
+                    ball.body.y = 275;
+                    ball.setVelocity(_x, _y);
+                }
+                else {
+                    ball.body.y = 515;
+                    ball.setVelocity(_x, _y);
+                }
+                portaled = true;
+                timer = this.time.addEvent({ delay: 500, callback: reset_portal, callbackScope: this });
+            }
+        }
+
         function create() {
 
             this.anims.create({
@@ -338,6 +371,30 @@
             paddle2.scaleX = paddle2_scales.x;
             paddle2.scaleY = paddle2_scales.y;
 
+            portal1 = this.physics.add.sprite(portal1_initial_offset.x, portal1_initial_offset.y, 'portal');
+            portal1.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal1.setImmovable(true); // Don't move when the ball hits the paddle
+            portal1.scaleX = portal_scales.x;
+            portal1.scaleY = portal_scales.y;
+
+            portal2 = this.physics.add.sprite(portal2_initial_offset.x, portal2_initial_offset.y, 'portal');
+            portal2.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal2.setImmovable(true); // Don't move when the ball hits the paddle
+            portal2.scaleX = portal_scales.x;
+            portal2.scaleY = portal_scales.y;
+
+            portal3 = this.physics.add.sprite(portal3_initial_offset.x, portal3_initial_offset.y, 'portal');
+            portal3.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal3.setImmovable(true); // Don't move when the ball hits the paddle
+            portal3.scaleX = portal_scales.x;
+            portal3.scaleY = portal_scales.y;
+
+            portal4 = this.physics.add.sprite(portal4_initial_offset.x, portal4_initial_offset.y, 'portal');
+            portal4.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal4.setImmovable(true); // Don't move when the ball hits the paddle
+            portal4.scaleX = portal_scales.x;
+            portal4.scaleY = portal_scales.y;
+
             ball = this.physics.add.sprite(ball_initial_offset.x, ball_initial_offset.y, 'ball');
             ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
             ball.setVelocity(0, 0);
@@ -358,6 +415,10 @@
             this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
             this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
             this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
+            this.physics.add.collider(ball, portal1, ball_portal_collision, null, this);
+            this.physics.add.collider(ball, portal2, ball_portal_collision, null, this);
+            this.physics.add.collider(ball, portal3, ball_portal_collision, null, this);
+            this.physics.add.collider(ball, portal4, ball_portal_collision, null, this);
             //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
 
