@@ -41,6 +41,7 @@
         var losing = false;
         var eject = false;
         var start = false;
+        var portaled = false;
         var paddle_speed = 300;
         var paddle2_speed = 300;
         var initial_ball_speed_vector = (100, 200);
@@ -62,6 +63,13 @@
         var trap_scale = { x: 2.5, y: 1 };
         var trap_top_initial_offset = { x: 0, y: 0 };
         var trap_top_scale = { x: 2.5, y: 1 };
+        var portal1_initial_offset = { x: 300, y: 275 };
+        var portal2_initial_offset = { x: 300, y: 515 };
+        //var portal1_initial_offset = { x: 95, y: 275 };
+        //var portal2_initial_offset = { x: 95, y: 515 };
+        //var portal3_initial_offset = { x: 505, y: 275 };
+        //var portal4_initial_offset = { x: 505, y: 515 };
+        var portal_scales = { x: 0.05, y: 0.05 };
         var power_speed = 200;
         var power_scale = { x: 1, y: 1 };
         var power_chance_out_of_100 = 25;
@@ -95,6 +103,13 @@
             paddle.setScale(paddle_scales.x, paddle_scales.y);
             paddle2.setScale(paddle2_scales.x, paddle2_scales.y);
         }
+        function reset_portal() {
+            portaled = false;
+        }
+        function reset_loseinglife() {
+            losinglife.visible = false;
+        }
+
 
         function spawn_two_balls(that) {
             var newBall1 = that.physics.add.sprite(paddle.x - paddle.displayWidth / 3,
@@ -113,6 +128,10 @@
             that.physics.add.collider(newBall1, bricks, ball_brick_collision, null, that);
             that.physics.add.collider(newBall1, trap, ball_trap_collision, null, that);
             that.physics.add.collider(newBall1, trap_top, ball_trap_collision, null, that);
+            that.physics.add.collider(newBall1, portal1, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall1, portal2, ball_portal_collision, null, that);
+            //that.physics.add.collider(newBall1, portal3, ball_portal_collision, null, that);
+            //that.physics.add.collider(newBall1, portal4, ball_portal_collision, null, that);
 
 
             var newBall2 = that.physics.add.sprite(paddle.x + paddle.displayWidth / 3,
@@ -131,6 +150,10 @@
             that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
             that.physics.add.collider(newBall2, trap, ball_trap_collision, null, that);
             that.physics.add.collider(newBall2, trap_top, ball_trap_collision, null, that);
+            that.physics.add.collider(newBall2, portal1, ball_portal_collision, null, that);
+            that.physics.add.collider(newBall2, portal2, ball_portal_collision, null, that);
+            //that.physics.add.collider(newBall2, portal3, ball_portal_collision, null, that);
+            //that.physics.add.collider(newBall2, portal4, ball_portal_collision, null, that);
         }
 
         function tween_from_snowstorm(startDirection, that)
@@ -310,6 +333,8 @@
                                                                       frameHeight: 800 });
             this.load.image('win', 'assets/win.png');
             this.load.image('lose', 'assets/lose.png');
+            this.load.image('portal', 'assets/portal.png');
+            this.load.image('losinglife', 'assets/losinglife.png');
             //this.load.multiatlas('snow', 'assets/Sheet2.json','assets');
             this.load.multiatlas('snow', 'assets/Sheets/Sheet.json', 'assets/Sheets')
         }
@@ -353,12 +378,17 @@
                     life--;
                     start = false;
                     eject = false;
+                    portaled = false;
                     ball.setVelocity(0, 0);
 
                     paddle.x = paddle_initial_offset.x;
                     paddle.y = paddle_initial_offset.y;
                     paddle2.x = paddle2_initial_offset.x;
                     paddle2.y = paddle2_initial_offset.y;
+                    //portal1.x = paddle_initial_offset.x;
+                    //portal1.y = paddle_initial_offset.y;
+                    //portal2.x = paddle2_initial_offset.x;
+                    //portal2.y = paddle2_initial_offset.y;
 
                     reset_ball();
                     //ball.x = ball_initial_offset.x;
@@ -367,7 +397,8 @@
                     //ball.scaleY = ball_scales.y;
 
                     lifeText.setText('life: ' + life);
-
+                    losinglife.visible = true;
+                    timer = this.time.addEvent({ delay: 500, callback: reset_loseinglife, callbackScope: this });
                 }
             }
         }
@@ -452,6 +483,87 @@
             }
         }
 
+        function ball_portal_collision(ball, portal) {
+            if (!portaled) {
+                var tween1 = this.tweens.add({
+                    targets: portal1,
+                    alpha: {
+                        from: 1, to: 0,
+                        ease: 'Linear',
+                        yoyo: true,
+                    },
+                    x: {
+                        value: Math.floor(Math.random() * 580),
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    y: {
+                        value: Math.floor(Math.random() * 50) + 250,
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    duration: 1000,
+                    repeat: 0,
+                });
+                var tween2 = this.tweens.add({
+                    targets: portal2,
+                    alpha: {
+                        from: 1, to: 0,
+                        ease: 'Linear',
+                        yoyo: true,
+                    },
+                    x: {
+                        value: Math.floor(Math.random() * 580),
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    y: {
+                        value: Math.floor(Math.random() * 50) + 490,
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    duration: 1000,
+                    repeat: 0,
+                });
+
+                portaled = true;
+                if (portal === portal1 || portal === portal2) {
+                    if (portal === portal1) {
+                        ball.body.x = portal2.body.x;
+                        ball.body.y = portal2.body.y;
+                        ball.setVelocityY(-200);
+                    }
+                    else {
+                        ball.body.x = portal1.body.x;
+                        ball.body.y = portal1.body.y;
+                        ball.setVelocityY(200);
+                    }
+                }
+
+                    //portal1.alpha = 0;
+                    //portal2.alpha = 0;
+                //else {
+                //    if (portal === portal3) {
+                //        ball.body.x = portal4.body.x;
+                //        ball.body.y = portal4.body.y;
+                //    }
+                //    else {
+                //        ball.body.x = portal3.body.x;
+                //        ball.body.y = portal3.body.y;
+                //    }
+                //    portal3.body.x = Math.floor(Math.random() * 580);
+                //    portal4.body.x = Math.floor(Math.random() * 580);
+                //    portal3.body.y = Math.floor(Math.random() * 50) + 250;
+                //    portal4.body.y = Math.floor(Math.random() * 50) + 490;
+                //}
+                timer = this.time.addEvent({ delay: 500, callback: reset_portal, callbackScope: this });
+            }
+        }
+
         function create() {
 
             this.anims.create({
@@ -516,6 +628,9 @@
             background.setOrigin(0, 0);
             background.setScale(1.36, 1.48);
 
+            losinglife = this.physics.add.sprite(300, 400, 'losinglife');
+            losinglife.alpha = 0.2; 
+            losinglife.visible = false;
             //power = this.physics.add.sprite(0, 0, 'power');
 
             bricks = create_bricks(5, 10, this);
@@ -539,6 +654,32 @@
             paddle2.setOffset(70,300);
             paddle2.angle = 180;
 
+            portal1 = this.physics.add.sprite(portal1_initial_offset.x, portal1_initial_offset.y, 'portal');
+            portal1.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal1.setImmovable(true); // Don't move when the ball hits the paddle
+            portal1.scaleX = portal_scales.x;
+            portal1.scaleY = portal_scales.y;
+            //portal1.setVelocity(200, 0);
+
+            portal2 = this.physics.add.sprite(portal2_initial_offset.x, portal2_initial_offset.y, 'portal');
+            portal2.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            portal2.setImmovable(true); // Don't move when the ball hits the paddle
+            portal2.scaleX = portal_scales.x;
+            portal2.scaleY = portal_scales.y;
+            //portal2.setVelocity(200, 0);
+
+            //portal3 = this.physics.add.sprite(portal3_initial_offset.x, portal3_initial_offset.y, 'portal');
+            //portal3.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            //portal3.setImmovable(true); // Don't move when the ball hits the paddle
+            //portal3.scaleX = portal_scales.x;
+            //portal3.scaleY = portal_scales.y;
+
+            //portal4 = this.physics.add.sprite(portal4_initial_offset.x, portal4_initial_offset.y, 'portal');
+            //portal4.setCollideWorldBounds(true); // Don't allow movement outside the play area
+            //portal4.setImmovable(true); // Don't move when the ball hits the paddle
+            //portal4.scaleX = portal_scales.x;
+            //portal4.scaleY = portal_scales.y;
+
             ball = this.physics.add.sprite(ball_initial_offset.x, ball_initial_offset.y, 'ball');
             ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
             ball.setVelocity(0, 0);
@@ -561,6 +702,10 @@
             this.physics.add.collider(ball, bricks, ball_brick_collision, null, this);
             this.physics.add.collider(ball, trap, ball_trap_collision, null, this);
             this.physics.add.collider(ball, trap_top, ball_trap_collision, null, this);
+            this.physics.add.collider(ball, portal1, ball_portal_collision, null, this);
+            this.physics.add.collider(ball, portal2, ball_portal_collision, null, this);
+            //this.physics.add.collider(ball, portal3, ball_portal_collision, null, this);
+            //this.physics.add.collider(ball, portal4, ball_portal_collision, null, this);
             //this.physics.add.collider(paddle, power, paddle_power_collision, null, this);
 
 
@@ -575,14 +720,20 @@
             if (cursors.left.isDown) {
                 paddle.setVelocityX(-paddle_speed);
                 paddle2.setVelocityX(-paddle2_speed);
+                //portal1.setVelocityX(-paddle_speed);
+                //portal2.setVelocityX(-paddle2_speed);
             }
             else if (cursors.right.isDown) {
                 paddle.setVelocityX(paddle_speed);
                 paddle2.setVelocityX(paddle2_speed);
+                //portal1.setVelocityX(paddle_speed);
+                //portal2.setVelocityX(paddle2_speed);
             }
             else {
                 paddle.setVelocityX(0);
                 paddle2.setVelocityX(0);
+                //portal1.setVelocityX(0);
+                //portal2.setVelocityX(0);
             }
 
             if (cursors.space.isDown)
