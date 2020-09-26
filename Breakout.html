@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 5 (Snow Art and Future Iterations)</title>
+    <title>Breakout Iteration 5 (Snow Storm Debuffs)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -46,6 +46,8 @@
         var initial_ball_speed_vector = (100, 200);
         var max_ball_speed = 250;
         var cur_max_ball_speed = max_ball_speed;
+        var min_ball_y_speed_factor = 1.0/2.0;
+        var max_ball_x_speed_factor = Math.sqrt(3)*0.5
         var game_offset = { x: 0, y: 0 };
         var first_brick_offset = { x: game_offset.x + 95, y: game_offset.y + 350 };
         var brick_steps = { x: 46, y: 25 };
@@ -67,6 +69,16 @@
         var ball_speed_slow_factor = 1.0 / 2.0;
         var slow_down_timers = [];
         var balls = [];
+        var snowstorm_tween_duration = 2000;
+        var snowstorm_storm_duration = 10000;
+        var cur_snowstorm_duration = 0;
+        var snow_ms_per_frame = 200/3.0; // 15 frames per second
+        var snowstorm_ms_per_frame = 200/9.0; // 45 frames per second
+        var snowstorm_ball_accelerations = {x:100, y:0};
+        var non_snowstorm_ball_accelerations = {x:0, y:0};
+        var cur_ball_accelerations = {x:non_snowstorm_ball_accelerations.x, 
+                                      y:non_snowstorm_ball_accelerations.y};
+        var cur_snowstorm_direction = 'none';
 
         function reset_ball() {
             ball.enableBody(true,
@@ -93,6 +105,8 @@
             newBall1.scaleX = ball_scales.x;
             newBall1.scaleY = ball_scales.y;
             balls.push(newBall1);
+            newBall1.body.acceleration.x = cur_ball_accelerations.x;
+            newBall1.body.acceleration.y = cur_ball_accelerations.y;
             that.physics.add.collider(newBall1, paddle, ball_paddle_collision, null, that);
             that.physics.add.collider(newBall1, paddle2, ball_paddle_collision, null, that);
             that.physics.add.collider(newBall1, bricks, ball_brick_collision, null, that);
@@ -109,11 +123,144 @@
             newBall2.scaleX = ball_scales.x;
             newBall2.scaleY = ball_scales.y;
             balls.push(newBall2);
+            newBall2.body.acceleration.x = cur_ball_accelerations.x;
+            newBall2.body.acceleration.y = cur_ball_accelerations.y;
             that.physics.add.collider(newBall2, paddle, ball_paddle_collision, null, that);
             that.physics.add.collider(newBall2, paddle2, ball_paddle_collision, null, that);
             that.physics.add.collider(newBall2, bricks, ball_brick_collision, null, that);
             that.physics.add.collider(newBall2, trap, ball_trap_collision, null, that);
             that.physics.add.collider(newBall2, trap_top, ball_trap_collision, null, that);
+        }
+
+        function tween_from_snowstorm(startDirection, that)
+        {
+            if(startDirection === 'none' || startDirection != cur_snowstorm_direction)
+            {
+                return; // Do nothing if there is no storm active or if the other storm is active
+            }
+
+            cur_snowstorm_direction = 'none';
+            cur_snowstorm_duration = 0;
+
+            // Tween the framerate of the storm down to nonsnowstorm levels
+            that.tweens.add({
+                targets: snowField.anims,
+                duration: snowstorm_tween_duration,
+                msPerFrame: {start: snowstorm_ms_per_frame, to: snow_ms_per_frame},
+            });
+
+
+            // Tween the acceleration of the balls
+            that.tweens.add({
+                targets: cur_ball_accelerations,
+                duration: snowstorm_tween_duration,
+                x: {start: cur_ball_accelerations.x, to: non_snowstorm_ball_accelerations.x},
+                y: {start: cur_ball_accelerations.y, to: non_snowstorm_ball_accelerations.y},
+                onUpdate: function () {
+                    balls.forEach((val) => {
+                        val.body.acceleration.x = cur_ball_accelerations.x;
+                        val.body.acceleration.y = cur_ball_accelerations.y;
+                    });
+                }
+            });
+
+            if(startDirection === 'left')
+            {
+                // Tween the direction of the snow back to normal
+                that.tweens.add({
+                    targets: snowField,
+                    duration: snowstorm_tween_duration,
+                    angle: {start: -140, to: -180},
+                    onComplete: function () {
+                        console.log("Snowstorm pointing left has subsided");
+                    },
+                });
+            }
+            else
+            {
+                // Tween the direction of the snow back to normal
+                that.tweens.add({
+                    targets: snowField,
+                    duration: snowstorm_tween_duration,
+                    angle: {start: 140, to: 180},
+                    onComplete: function () {
+                        console.log("Snowstorm pointing right has subsided");
+                    },
+                });
+            }
+
+
+        }
+
+        function tween_to_snowstorm(direction, that)
+        {
+            if(direction === 'none' || direction === cur_snowstorm_direction)
+            {
+                return; // Nothing to do if a direction wasn't specified or is already going
+            }
+
+            cur_snowstorm_direction = direction;
+            cur_snowstorm_duration += snowstorm_storm_duration + snowstorm_tween_duration;
+
+            // Tween the framerate of the storm up to snowstorm levels
+            that.tweens.add({
+                targets: snowField.anims,
+                duration: snowstorm_tween_duration,
+                msPerFrame: {start: snow_ms_per_frame, to: snowstorm_ms_per_frame},
+            });
+
+            if(direction === 'left')
+            {
+                // Tween the direction of the storm to the left
+                that.tweens.add({
+                    targets: snowField,
+                    duration: snowstorm_tween_duration,
+                    angle: {start: -180, to: -140},
+                    onComplete: function () {
+                        console.log("Snowstorm is pointing left");
+                    },
+                });
+
+                // Tween the acceleration of the balls
+                that.tweens.add({
+                    targets:cur_ball_accelerations,
+                    duration: snowstorm_tween_duration,
+                    x: {start: non_snowstorm_ball_accelerations.x, to: -snowstorm_ball_accelerations.x},
+                    y: {start: non_snowstorm_ball_accelerations.y, to: snowstorm_ball_accelerations.y},
+                    onUpdate: function () {
+                        balls.forEach((val) => {
+                            val.body.acceleration.x = cur_ball_accelerations.x;
+                            val.body.acceleration.y = cur_ball_accelerations.y;
+                        });
+                    }
+                });
+            }
+            else
+            {
+                // Tween the direction of the storm to the right
+                that.tweens.add({
+                    targets: snowField,
+                    duration: snowstorm_tween_duration,
+                    angle: {start: 179, to: 140},
+                    onComplete: function () {
+                        console.log("Snowstorm is pointing right");
+                    },
+                });
+
+                // Tween the acceleration of the balls
+                that.tweens.add({
+                    targets:cur_ball_accelerations,
+                    duration: snowstorm_tween_duration,
+                    x: {start: non_snowstorm_ball_accelerations.x, to: snowstorm_ball_accelerations.x},
+                    y: {start: non_snowstorm_ball_accelerations.y, to: snowstorm_ball_accelerations.y},
+                    onUpdate: function () {
+                        balls.forEach((val) => {
+                            val.body.acceleration.x = cur_ball_accelerations.x;
+                            val.body.acceleration.y = cur_ball_accelerations.y;
+                        });
+                    }
+                });
+            }
         }
 
         // Function for creating the grid of bricks
@@ -185,13 +332,12 @@
             //set velocity based on the speed of the paddle
             ball.setVelocityX(ball.body.velocity.x + paddle.body.velocity.x);
             // Since balls now have a max speed rather than max X velocity, adjust for loss of Y velocity
-            if (Math.abs(ball.body.velocity.y) < cur_max_ball_speed / 2) {
-                ball.setVelocityY(Math.sign(ball.body.velocity.y) * cur_max_ball_speed / 2);
-
+            if (Math.abs(ball.body.velocity.y) < cur_max_ball_speed * min_ball_y_speed_factor) {
+                ball.setVelocityY(Math.sign(ball.body.velocity.y) * cur_max_ball_speed * min_ball_y_speed_factor);
             }
             // And finally make sure the ball never travels slower than the current max speed
             ball.setVelocity(ball.body.velocity.normalize().x * cur_max_ball_speed,
-                ball.body.velocity.normalize().y * cur_max_ball_speed);
+                             ball.body.velocity.normalize().y * cur_max_ball_speed);
         }
 
         function ball_trap_collision(ball, trap) {
@@ -241,7 +387,7 @@
             //I want to use a switch case to implement all the buffs, but I think we can just generate a random buff for this update.
             power.disableBody(true, true);
 
-            switch (Math.floor(Math.random() * 4)) {
+            switch (Math.floor(Math.random() * 6)) {
                 case 0: // triple ball
                     spawn_two_balls(this);
                     break;
@@ -251,6 +397,8 @@
                     cur_max_ball_speed *= ball_speed_slow_factor;
                     balls.forEach((val) => {
                         val.body.setMaxSpeed(cur_max_ball_speed);
+                        // Don't let the ball's X velocity exceed a certain percentage of max speed
+                        val.body.setMaxVelocity(cur_max_ball_speed*max_ball_x_speed_factor);
                     });
                     break;
                 case 2: // shorter paddle
@@ -272,6 +420,44 @@
                         this.physics.add.collider(ball, newBrick, ball_brick_collision, null, this);
                         numbreaks++;
                         count++;
+                    }
+                    break;
+                case 4: // left snowstorm
+                    // If there is already a left facing storm
+                    if(cur_snowstorm_direction === 'left')
+                    {
+                        // Increase its duration
+                        cur_snowstorm_duration += snowstorm_storm_duration;
+                    }
+                    else if (cur_snowstorm_direction === 'right')
+                    {   // If there is a snowstorm going right
+                        // Reduce its duration
+                        cur_snowstorm_duration -= snowstorm_storm_duration;
+
+                    }
+                    else // If there is no snowstorm
+                    {
+                        // Create one going let
+                        tween_to_snowstorm('left',this);
+                    }
+                    break;
+                case 5: // right snowstorm
+                    // If is already a left facing storm
+                    if(cur_snowstorm_direction === 'left')
+                    {
+                        // Reduce its duration
+                        cur_snowstorm_duration -= snowstorm_storm_duration;
+                    }
+                    else if (cur_snowstorm_direction === 'right')
+                    {   // If there is already a snowstorm going right
+                        // Increase its duration
+                        cur_snowstorm_duration += snowstorm_storm_duration;
+
+                    }
+                    else // If there is no snowstorm
+                    {
+                        // Create one going right
+                        tween_to_snowstorm('right',this);
                     }
                     break;
             }
@@ -322,7 +508,7 @@
             snowField.setScale(1, 1);
             var frameNames = this.anims.generateFrameNames('snow');
             this.anims.create({key: 'snow', frames: frameNames, frameRate: 15, repeat: -1});
-            this.anims.create({key: 'snowstorm', frames: frameNames, frameRate: 30, repeat: -1});
+            this.anims.create({key: 'snowstorm', frames: frameNames, frameRate: 45, repeat: -1});
             snowField.anims.play('snow');
             //snowField.scaleX = .5;
             //snowField.scaleY = .5;
@@ -355,6 +541,8 @@
             ball.setVelocity(0, 0);
             ball.setBounce(1); // Don't lose speed when bouncing
             ball.body.setMaxSpeed(max_ball_speed); // Never exceed max_ball_speed
+            // Set a maximum X velocity to make sure the Y speed doesn't go too low
+            ball.body.setMaxVelocity(cur_max_ball_speed*Math.sqrt(3)*0.5); 
             ball.scaleX = ball_scales.x;
             ball.scaleY = ball_scales.y;
             balls.push(ball);
@@ -375,6 +563,8 @@
 
             cursors = this.input.keyboard.createCursorKeys();
 
+            
+
         }
 
         function update(time, deltaTime) {
@@ -393,8 +583,10 @@
             }
 
             if (cursors.space.isDown)
+            {
                 if (start == false)
                     eject = true;
+            }
 
             if (eject) {
                 ball.setVelocity(200, 200);
@@ -405,6 +597,18 @@
                 ball.x = paddle.x;
             }
 
+            // If there is a current snowstorm
+            if(cur_snowstorm_direction != 'none' && cur_snowstorm_duration > 0)
+            {
+                // Count down its duration
+                cur_snowstorm_duration -= deltaTime;
+            }
+            else if(cur_snowstorm_direction != 'none')
+            {
+                // If there is a storm and its over
+                tween_from_snowstorm(cur_snowstorm_direction,this);
+            }
+
             // Count down each slow down timer
             slow_down_timers.forEach((val, i) => {
                 slow_down_timers[i] = val - deltaTime;
@@ -413,7 +617,9 @@
                     balls.forEach((val) => {
                         val.body.setMaxSpeed(cur_max_ball_speed);
                         val.setVelocity(val.body.velocity.normalize().x * cur_max_ball_speed,
-                            val.body.velocity.normalize().y * cur_max_ball_speed);
+                                        val.body.velocity.normalize().y * cur_max_ball_speed);
+                        // Don't let the X velocity exceed a certain percentage of max speed
+                        val.body.setMaxVelocity(cur_max_ball_speed*max_ball_x_speed_factor);
                     });
                     slow_down_timers.splice(i, 1);
                 }
