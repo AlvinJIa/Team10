@@ -55,14 +55,14 @@
         var paddle_scales = { x: .5, y: .25 };
         var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
         var paddle2_scales = { x: .5, y: .25 };
-        var ball_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 685 };
+        var ball_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 670 };
         var ball_scales = { x: .5, y: .5 };
         var trap_initial_offset = { x: 0, y: 800 };
         var trap_scale = { x: 2.5, y: 1 };
         var trap_top_initial_offset = { x: 0, y: 0 };
         var trap_top_scale = { x: 2.5, y: 1 };
-        var portal1_initial_offset = { x: 300, y: 275 };
-        var portal2_initial_offset = { x: 300, y: 515 };
+        var portal1_initial_offset = { x: 300, y: 100 };
+        var portal2_initial_offset = { x: 300, y: 700 };
         //var portal1_initial_offset = { x: 95, y: 275 };
         //var portal2_initial_offset = { x: 95, y: 515 };
         //var portal3_initial_offset = { x: 505, y: 275 };
@@ -247,10 +247,10 @@
                     paddle.y = paddle_initial_offset.y;
                     paddle2.x = paddle2_initial_offset.x;
                     paddle2.y = paddle2_initial_offset.y;
-                    //portal1.x = paddle_initial_offset.x;
-                    //portal1.y = paddle_initial_offset.y;
-                    //portal2.x = paddle2_initial_offset.x;
-                    //portal2.y = paddle2_initial_offset.y;
+                    portal1.x = paddle2_initial_offset.x;
+                    portal1.y = paddle2_initial_offset.y;
+                    portal2.x = paddle_initial_offset.x;
+                    portal2.y = paddle_initial_offset.y;
 
                     reset_ball();
                     //ball.x = ball_initial_offset.x;
@@ -320,10 +320,10 @@
                         ball.body.y = portal1.body.y;
                         ball.setVelocityY(200);
                     }
-                    portal1.body.x = Math.floor(Math.random() * 580);
-                    portal2.body.x = Math.floor(Math.random() * 580);
-                    portal1.body.y = Math.floor(Math.random() * 50) + 250;
-                    portal2.body.y = Math.floor(Math.random() * 50) + 490;
+                    //portal1.body.x = Math.floor(Math.random() * 580);
+                    //portal2.body.x = Math.floor(Math.random() * 580);
+                    //portal1.body.y = Math.floor(Math.random() * 50) + 250;
+                    //portal2.body.y = Math.floor(Math.random() * 50) + 490;
                 }
 
                     //portal1.alpha = 0;
@@ -476,20 +476,20 @@
             if (cursors.left.isDown) {
                 paddle.setVelocityX(-paddle_speed);
                 paddle2.setVelocityX(-paddle2_speed);
-                //portal1.setVelocityX(-paddle_speed);
-                //portal2.setVelocityX(-paddle2_speed);
+                portal1.setVelocityX(-paddle_speed);
+                portal2.setVelocityX(-paddle2_speed);
             }
             else if (cursors.right.isDown) {
                 paddle.setVelocityX(paddle_speed);
                 paddle2.setVelocityX(paddle2_speed);
-                //portal1.setVelocityX(paddle_speed);
-                //portal2.setVelocityX(paddle2_speed);
+                portal1.setVelocityX(paddle_speed);
+                portal2.setVelocityX(paddle2_speed);
             }
             else {
                 paddle.setVelocityX(0);
                 paddle2.setVelocityX(0);
-                //portal1.setVelocityX(0);
-                //portal2.setVelocityX(0);
+                portal1.setVelocityX(0);
+                portal2.setVelocityX(0);
             }
 
             if (cursors.space.isDown)
