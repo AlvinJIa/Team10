@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 5 (Snowstorm Debuffs)</title>
+    <title>Breakout Iteration 6 (Snowstorm and Portals)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -53,10 +53,10 @@
         var brick_steps = { x: 46, y: 25 };
         var brick_scales = { x: 1.5, y: 1 };
         var paddle_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 700 };
-        var paddle_scales = { x: .5, y: .25 };
+        var paddle_scales = { x: .2, y: .2 };
         var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
-        var paddle2_scales = { x: .5, y: .25 };
-        var ball_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 685 };
+        var paddle2_scales = { x: .2, y: .2 };
+        var ball_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 695 };
         var ball_scales = { x: .5, y: .5 };
         var trap_initial_offset = { x: 0, y: 800 };
         var trap_scale = { x: 2.5, y: 1 };
@@ -69,7 +69,8 @@
         var ball_speed_slow_factor = 1.0 / 2.0;
         var slow_down_timers = [];
         var balls = [];
-        var snowstorm_tween_duration = 000;
+        var snowstorm_start_tween_duration = 1000;
+        var snowstorm_end_tween_duration = 500;
         var snowstorm_storm_duration = 10000;
         var cur_snowstorm_duration = 0;
         var snow_ms_per_frame = 200/3.0; // 15 frames per second
@@ -91,8 +92,8 @@
         }
 
         function reset_paddle() {
-            paddle.setScale(0.5, 0.25);
-            paddle2.setScale(0.5, 0.25);
+            paddle.setScale(paddle_scales.x, paddle_scales.y);
+            paddle2.setScale(paddle2_scales.x, paddle2_scales.y);
         }
 
         function spawn_two_balls(that) {
@@ -145,7 +146,7 @@
             // Tween the framerate of the storm down to nonsnowstorm levels
             that.tweens.add({
                 targets: snowField.anims,
-                duration: snowstorm_tween_duration,
+                duration: snowstorm_end_tween_duration,
                 msPerFrame: {start: snowstorm_ms_per_frame, to: snow_ms_per_frame},
             });
 
@@ -153,7 +154,7 @@
             // Tween the acceleration of the balls
             that.tweens.add({
                 targets: cur_ball_accelerations,
-                duration: snowstorm_tween_duration,
+                duration: snowstorm_end_tween_duration,
                 x: {start: cur_ball_accelerations.x, to: non_snowstorm_ball_accelerations.x},
                 y: {start: cur_ball_accelerations.y, to: non_snowstorm_ball_accelerations.y},
                 onUpdate: function () {
@@ -169,11 +170,8 @@
                 // Tween the direction of the snow back to normal
                 that.tweens.add({
                     targets: snowField,
-                    duration: snowstorm_tween_duration,
-                    angle: {start: -140, to: -180},
-                    onComplete: function () {
-                        console.log("Snowstorm pointing left has subsided");
-                    },
+                    duration: snowstorm_end_tween_duration,
+                    angle: {start: -140, to: -180}
                 });
             }
             else
@@ -181,11 +179,8 @@
                 // Tween the direction of the snow back to normal
                 that.tweens.add({
                     targets: snowField,
-                    duration: snowstorm_tween_duration,
-                    angle: {start: 140, to: 180},
-                    onComplete: function () {
-                        console.log("Snowstorm pointing right has subsided");
-                    },
+                    duration: snowstorm_end_tween_duration,
+                    angle: {start: 140, to: 180}
                 });
             }
 
@@ -200,12 +195,12 @@
             }
 
             cur_snowstorm_direction = direction;
-            cur_snowstorm_duration += snowstorm_storm_duration + snowstorm_tween_duration;
+            cur_snowstorm_duration += snowstorm_storm_duration + snowstorm_start_tween_duration;
 
             // Tween the framerate of the storm up to snowstorm levels
             that.tweens.add({
                 targets: snowField.anims,
-                duration: snowstorm_tween_duration,
+                duration: snowstorm_start_tween_duration,
                 msPerFrame: {start: snow_ms_per_frame, to: snowstorm_ms_per_frame},
             });
 
@@ -214,17 +209,14 @@
                 // Tween the direction of the storm to the left
                 that.tweens.add({
                     targets: snowField,
-                    duration: snowstorm_tween_duration,
-                    angle: {start: -180, to: -140},
-                    onComplete: function () {
-                        console.log("Snowstorm is pointing left");
-                    },
+                    duration: snowstorm_start_tween_duration,
+                    angle: {start: -180, to: -140}
                 });
 
                 // Tween the acceleration of the balls
                 that.tweens.add({
                     targets:cur_ball_accelerations,
-                    duration: snowstorm_tween_duration,
+                    duration: snowstorm_start_tween_duration,
                     x: {start: non_snowstorm_ball_accelerations.x, to: -snowstorm_ball_accelerations.x},
                     y: {start: non_snowstorm_ball_accelerations.y, to: snowstorm_ball_accelerations.y},
                     onUpdate: function () {
@@ -240,17 +232,14 @@
                 // Tween the direction of the storm to the right
                 that.tweens.add({
                     targets: snowField,
-                    duration: snowstorm_tween_duration,
-                    angle: {start: 179, to: 140},
-                    onComplete: function () {
-                        console.log("Snowstorm is pointing right");
-                    },
+                    duration: snowstorm_start_tween_duration,
+                    angle: {start: 179, to: 140}
                 });
 
                 // Tween the acceleration of the balls
                 that.tweens.add({
                     targets:cur_ball_accelerations,
-                    duration: snowstorm_tween_duration,
+                    duration: snowstorm_start_tween_duration,
                     x: {start: non_snowstorm_ball_accelerations.x, to: snowstorm_ball_accelerations.x},
                     y: {start: non_snowstorm_ball_accelerations.y, to: snowstorm_ball_accelerations.y},
                     onUpdate: function () {
@@ -317,8 +306,8 @@
             this.load.image('trap', 'assets/trap.png');
             this.load.spritesheet('power', 'assets/bricks01.png', { frameWidth: 34, frameHeight: 20 });
             this.load.image('background', 'assets/background_transparent_temp.png');
-            //this.load.spritesheet('snow', 'assets/snow_sheet2.png', { frameWidth: 1600, 
-            //                                                          frameHeight: 1600 });
+            this.load.spritesheet('animatedPaddle', 'assets/paddle.png', { frameWidth: 800, 
+                                                                      frameHeight: 800 });
             this.load.image('win', 'assets/win.png');
             this.load.image('lose', 'assets/lose.png');
             //this.load.multiatlas('snow', 'assets/Sheet2.json','assets');
@@ -402,8 +391,8 @@
                     });
                     break;
                 case 2: // shorter paddle
-                    paddle.setScale(0.25, 0.25);
-                    paddle2.setScale(0.25, 0.25);
+                    paddle.setScale(paddle_scales.x * 0.5, paddle_scales.y * 1);
+                    paddle2.setScale(paddle2_scales.x * 0.5, paddle2_scales.y * 1);
                     timer = this.time.addEvent({ delay: 5000, callback: reset_paddle, callbackScope: this });
 
                     break;
@@ -483,6 +472,13 @@
                 frameRate: 20
             });
 
+            this.anims.create({
+                key: 'animatedPaddle',
+                frames: this.anims.generateFrameNumbers('animatedPaddle', {start: 0, end: 1}),
+                frameRate: 20,
+                repeat: -1
+            })
+
             // this.anims.create({
             //     key: 'snow',
             //     frames: this.anims.generateFrameNumbers('snow', { start: 0, end: 161 }),
@@ -524,17 +520,24 @@
 
             bricks = create_bricks(5, 10, this);
 
-            paddle = this.physics.add.sprite(paddle_initial_offset.x, paddle_initial_offset.y, 'paddle');
+            paddle = this.physics.add.sprite(paddle_initial_offset.x, paddle_initial_offset.y, 'animatedPaddle');
             paddle.setCollideWorldBounds(true); // Don't allow movement outside the play area
             paddle.setImmovable(true); // Don't move when the ball hits the paddle
             paddle.scaleX = paddle_scales.x;
             paddle.scaleY = paddle_scales.y;
+            paddle.anims.play('animatedPaddle');
+            paddle.setSize(680,40,0,0);
+            paddle.setOffset(45,450);
 
-            paddle2 = this.physics.add.sprite(paddle2_initial_offset.x, paddle2_initial_offset.y, 'paddle');
+            paddle2 = this.physics.add.sprite(paddle2_initial_offset.x, paddle2_initial_offset.y, 'animatedPaddle');
             paddle2.setCollideWorldBounds(true); // Don't allow movement outside the play area
             paddle2.setImmovable(true); // Don't move when the ball hits the paddle
             paddle2.scaleX = paddle2_scales.x;
             paddle2.scaleY = paddle2_scales.y;
+            paddle2.anims.play('animatedPaddle');
+            paddle2.setSize(680,40,0,0);
+            paddle2.setOffset(70,300);
+            paddle2.angle = 180;
 
             ball = this.physics.add.sprite(ball_initial_offset.x, ball_initial_offset.y, 'ball');
             ball.setCollideWorldBounds(true); // Make the ball bounce off the play area
