@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Breakout Iteration 4.01 (Portals)</title>
+    <title>Breakout Iteration 4.01 (Portals random change)</title>
     <script src="phaser.js"></script>
     <style type="text/css">
         body {
@@ -307,6 +307,50 @@
 
         function ball_portal_collision(ball, portal) {
             if (!portaled) {
+                var tween1 = this.tweens.add({
+                    targets: portal1,
+                    alpha: {
+                        from: 1, to: 0,
+                        ease: 'Linear',
+                        yoyo: true,
+                    },
+                    x: {
+                        value: Math.floor(Math.random() * 580),
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    y: {
+                        value: Math.floor(Math.random() * 50) + 250,
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    duration: 1000,
+                    repeat: 0,
+                });
+                var tween2 = this.tweens.add({
+                    targets: portal2,
+                    alpha: {
+                        from: 1, to: 0,
+                        ease: 'Linear',
+                        yoyo: true,
+                    },
+                    x: {
+                        value: Math.floor(Math.random() * 580),
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    y: {
+                        value: Math.floor(Math.random() * 50) + 490,
+                        delay: 999,
+                        ease: 'Stepped',
+                        yoyo: false,
+                    },
+                    duration: 1000,
+                    repeat: 0,
+                });
 
                 portaled = true;
                 if (portal === portal1 || portal === portal2) {
@@ -320,10 +364,6 @@
                         ball.body.y = portal1.body.y;
                         ball.setVelocityY(200);
                     }
-                    portal1.body.x = Math.floor(Math.random() * 580);
-                    portal2.body.x = Math.floor(Math.random() * 580);
-                    portal1.body.y = Math.floor(Math.random() * 50) + 250;
-                    portal2.body.y = Math.floor(Math.random() * 50) + 490;
                 }
 
                     //portal1.alpha = 0;
