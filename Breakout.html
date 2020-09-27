@@ -52,7 +52,9 @@
         var game_offset = { x: 0, y: 0 };
         var first_brick_offset = { x: game_offset.x + 95, y: game_offset.y + 350 };
         var brick_steps = { x: 46, y: 25 };
-        var brick_scales = { x: 1.5, y: 1 };
+        var brick_scales = { x: .75, y: .5 };
+        var brick_fade_time = 500;
+        var ice_brick_scales = {x: 1.4, y: 1};
         var paddle_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 700 };
         var paddle_scales = { x: .2, y: .2 };
         var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
@@ -71,7 +73,7 @@
         //var portal4_initial_offset = { x: 505, y: 515 };
         var portal_scales = { x: 0.05, y: 0.05 };
         var power_speed = 200;
-        var power_scale = { x: 1, y: 1 };
+        var power_scales = { x: 1.2, y: 1 };
         var power_chance_out_of_100 = 25;
         var max_slow_down_duration_in_ms = 10000; // 10 seconds
         var ball_speed_slow_factor = 1.0 / 2.0;
@@ -283,8 +285,9 @@
                 for (j = 0; j < rows; j++) {
                     var newBrick = bricks.create(first_brick_offset.x + i * brick_steps.x,
                         first_brick_offset.y + j * brick_steps.y,
-                        'power');
-                    newBrick.anims.play('brick');
+                        'brick');
+                    newBrick.setSize(45,20,0,0);
+                    newBrick.setOffset(38,50);
                     newBrick.scaleX = brick_scales.x;
                     newBrick.scaleY = brick_scales.y;
                     numbreaks++;
@@ -296,16 +299,32 @@
         // Callback function for when the ball hits a brick
         function ball_brick_collision(ball, brick) {
             if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
-                var newpower = this.physics.add.sprite(brick.body.x, brick.body.y, 'power');
-                newpower.scaleX = brick_scales.x;
-                newpower.scaleY = brick_scales.y;
+                var newpower = this.physics.add.sprite(brick.x, brick.y, 'power');
+                newpower.scaleX = power_scales.x;
+                newpower.scaleY = power_scales.y;
                 newpower.anims.play('power');
                 newpower.setImmovable(true); // Don't move when the ball hits the paddle
                 newpower.setVelocityY(power_speed);
                 this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
             }
 
-            brick.disableBody(true, true);
+            console.log(brick.anims.currentAnim);
+            if(brick.anims.currentAnim === null)
+            {
+                brick.anims.play("brickBreak");
+                this.tweens.add({
+                    targets: brick,
+                    duration: brick_fade_time,
+                    alpha: {start: 1, to: 0},
+                    onComplete: function () {
+                        brick.disableBody(true,true);
+                    }
+                });
+            }
+            else if(brick.anims.currentAnim.key == 'ice')
+            {
+                brick.disableBody(true,true);
+            }
             numbreaks--;
             // TODO: Tally score or detect when the player wins or something like that
             if (numbreaks == 0) {
@@ -324,7 +343,9 @@
         function preload() {
             // Change these once we have the real assets
             this.load.image('paddle', 'assets/paddle_temp.png');
-            this.load.image('brick', 'assets/brick_temp.png');
+            this.load.image('brick', 'assets/Brick Break/Brick Break1.png');
+            this.load.image('brickBreak1', 'assets/Brick Break/Brick Break2.png');
+            this.load.image('brickBreak2', 'assets/Brick Break/Brick Break3.png');
             this.load.image('ball', 'assets/ball_temp.png');
             this.load.image('trap', 'assets/trap.png');
             this.load.spritesheet('power', 'assets/bricks01.png', { frameWidth: 34, frameHeight: 20 });
@@ -434,9 +455,9 @@
                         var j = Math.floor(Math.random() * 7);
                         var newBrick = bricks.create(first_brick_offset.x + i * brick_steps.x,
                             first_brick_offset.y + (j-1) * brick_steps.y, 'power');
-                        newBrick.anims.play('brick1');
-                        newBrick.scaleX = brick_scales.x;
-                        newBrick.scaleY = brick_scales.y;
+                        newBrick.anims.play('ice');
+                        newBrick.scaleX = ice_brick_scales.x;
+                        newBrick.scaleY = ice_brick_scales.y;
                         this.physics.add.collider(ball, newBrick, ball_brick_collision, null, this);
                         numbreaks++;
                         count++;
@@ -573,7 +594,7 @@
             });
 
             this.anims.create({
-                key: 'brick1',
+                key: 'ice',
                 frames: [{ key: 'power', frame: 1 }],
                 frameRate: 20
             });
@@ -591,12 +612,15 @@
                 repeat: -1
             })
 
-            // this.anims.create({
-            //     key: 'snow',
-            //     frames: this.anims.generateFrameNumbers('snow', { start: 0, end: 161 }),
-            //     frameRate: 5,
-            //     repeat: -1
-            // });
+            this.anims.create({
+                key: 'brickBreak',
+                frames: [
+                    {key: 'brick'},
+                    {key: 'brickBreak1'},
+                    {key: 'brickBreak2'}
+                ],
+                frameRate: 10
+            });
 
             trap = this.physics.add.sprite(trap_initial_offset.x, trap_initial_offset.y, 'trap');
             trap.setCollideWorldBounds(true);
