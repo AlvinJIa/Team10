@@ -300,18 +300,19 @@
 
         // Callback function for when the ball hits a brick
         function ball_brick_collision(ball, brick) {
-            if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
-                var newpower = this.physics.add.sprite(brick.x, brick.y, 'power');
-                newpower.scaleX = power_scales.x;
-                newpower.scaleY = power_scales.y;
-                newpower.anims.play('power');
-                newpower.setImmovable(true); // Don't move when the ball hits the paddle
-                newpower.setVelocityY(power_speed);
-                this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
-            }
-
+            // If this brick is not an ice brick and is not already being destroyed
             if(brick.anims.currentAnim === null)
             {
+                if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
+                    var newpower = this.physics.add.sprite(brick.x, brick.y, 'power');
+                    newpower.scaleX = power_scales.x;
+                    newpower.scaleY = power_scales.y;
+                    newpower.anims.play('power');
+                    newpower.setImmovable(true); // Don't move when the ball hits the paddle
+                    newpower.setVelocityY(power_speed);
+                    this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+                }  
+
                 brick.anims.play("brickBreak");
                 this.tweens.add({
                     targets: brick,
@@ -321,12 +322,24 @@
                         brick.disableBody(true,true);
                     }
                 });
+                numbreaks--;
             }
             else if(brick.anims.currentAnim.key == 'ice')
             {
-                brick.disableBody(true,true);
+                if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
+                    var newpower = this.physics.add.sprite(brick.x, brick.y, 'power');
+                    newpower.scaleX = power_scales.x;
+                    newpower.scaleY = power_scales.y;
+                    newpower.anims.play('power');
+                    newpower.setImmovable(true); // Don't move when the ball hits the paddle
+                    newpower.setVelocityY(power_speed);
+                    this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+                }
+
+                brick.disableBody(true,true); // Ice bricks should just vanish, rather than playing animation
+                numbreaks--;
             }
-            numbreaks--;
+            
             // TODO: Tally score or detect when the player wins or something like that
             if (numbreaks == 0) {
                 winning = true;
@@ -459,7 +472,7 @@
                         newBrick.anims.play('ice');
                         newBrick.scaleX = ice_brick_scales.x;
                         newBrick.scaleY = ice_brick_scales.y;
-                        newBrick.setSize(brick_collider_size.x*1.1, brick_collider_size.y*1.1);
+                        newBrick.setSize(brick_collider_size.x*1.2, brick_collider_size.y*1.1);
                         newBrick.setOffset(-10,0);
                         this.physics.add.collider(ball, newBrick, ball_brick_collision, null, this);
                         numbreaks++;
