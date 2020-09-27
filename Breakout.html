@@ -54,13 +54,16 @@
         var brick_steps = { x: 46, y: 25 };
         var brick_scales = { x: .75, y: .5 };
         var brick_fade_time = 500;
-        var ice_brick_scales = {x: 1.4, y: 1};
+        var ice_brick_scales = {x: brick_scales.x, y: brick_scales.y};
+        var ice_brick_offset = {x: 2, y: 17};
         var paddle_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 700 };
         var paddle_scales = { x: .2, y: .2 };
         var paddle2_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 100 };
         var paddle2_scales = { x: .2, y: .2 };
         var ball_initial_offset = { x: game_offset.x + 300, y: game_offset.y + 695 };
-        var ball_scales = { x: .5, y: .5 };
+        var ball_scales = { x: .05, y: .05 };
+        var ball_collider_size = {x:500, y:500};
+        var ball_collider_offset = {x:260, y:250};
         var brick_collider_size = {x: 45, y: 20};
         var brick_collider_offset = {x: 38, y: 50 };
         var trap_initial_offset = { x: 0, y: 800 };
@@ -124,6 +127,8 @@
             newBall1.body.setMaxSpeed(cur_max_ball_speed);
             newBall1.scaleX = ball_scales.x;
             newBall1.scaleY = ball_scales.y;
+            newBall1.setSize(ball_collider_size.x,ball_collider_size.y);
+            newBall1.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(newBall1);
             newBall1.body.acceleration.x = cur_ball_accelerations.x;
             newBall1.body.acceleration.y = cur_ball_accelerations.y;
@@ -146,6 +151,8 @@
             newBall2.body.setMaxSpeed(cur_max_ball_speed);
             newBall2.scaleX = ball_scales.x;
             newBall2.scaleY = ball_scales.y;
+            newBall2.setSize(ball_collider_size.x,ball_collider_size.y);
+            newBall2.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(newBall2);
             newBall2.body.acceleration.x = cur_ball_accelerations.x;
             newBall2.body.acceleration.y = cur_ball_accelerations.y;
@@ -300,7 +307,8 @@
 
         // Callback function for when the ball hits a brick
         function ball_brick_collision(ball, brick) {
-            // If this brick is not an ice brick and is not already being destroyed
+            
+            // If this brick is not already being destroyed
             if(brick.anims.currentAnim === null)
             {
                 if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
@@ -313,31 +321,33 @@
                     this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
                 }  
 
-                brick.anims.play("brickBreak");
-                this.tweens.add({
-                    targets: brick,
-                    duration: brick_fade_time,
-                    alpha: {start: 1, to: 0},
-                    onComplete: function () {
-                        brick.disableBody(true,true);
-                    }
-                });
-                numbreaks--;
-            }
-            else if(brick.anims.currentAnim.key == 'ice')
-            {
-                if (Math.floor(Math.random() * 100) < power_chance_out_of_100) {
-                    var newpower = this.physics.add.sprite(brick.x, brick.y, 'power');
-                    newpower.scaleX = power_scales.x;
-                    newpower.scaleY = power_scales.y;
-                    newpower.anims.play('power');
-                    newpower.setImmovable(true); // Don't move when the ball hits the paddle
-                    newpower.setVelocityY(power_speed);
-                    this.physics.add.collider(paddle, newpower, paddle_power_collision, null, this);
+                if(brick.texture.key == 'brick')
+                {
+                    brick.anims.play("brickBreak");
+                    this.tweens.add({
+                        targets: brick,
+                        duration: brick_fade_time,
+                        alpha: {start: 1, to: 0},
+                        onComplete: function () {
+                            brick.disableBody(true,true);
+                        }
+                    });
                 }
-
-                brick.disableBody(true,true); // Ice bricks should just vanish, rather than playing animation
+                else
+                {
+                    brick.anims.play("iceBrickBreak");
+                    this.tweens.add({
+                        targets: brick,
+                        duration: brick_fade_time,
+                        alpha: {start: 1, to: 0},
+                        onComplete: function () {
+                            brick.disableBody(true,true);
+                        }
+                    });
+                }
                 numbreaks--;
+                // Disable this brick's collision
+                brick.body.checkCollision.none = true;
             }
             
             // TODO: Tally score or detect when the player wins or something like that
@@ -360,7 +370,10 @@
             this.load.image('brick', 'assets/Brick Break/Brick Break1.png');
             this.load.image('brickBreak1', 'assets/Brick Break/Brick Break2.png');
             this.load.image('brickBreak2', 'assets/Brick Break/Brick Break3.png');
-            this.load.image('ball', 'assets/ball_temp.png');
+            this.load.image('iceBrick', 'assets/Ice Brick_Break/Ice Brick_Break1.png');
+            this.load.image('iceBrickBreak1', 'assets/Ice Brick_Break/Ice Brick_Break2.png');
+            this.load.image('iceBrickBreak2', 'assets/Ice Brick_Break/Ice Brick_Break3.png');
+            this.load.image('ball', 'assets/Ball_New.png');
             this.load.image('trap', 'assets/trap.png');
             this.load.spritesheet('power', 'assets/bricks01.png', { frameWidth: 34, frameHeight: 20 });
             this.load.image('background', 'assets/background_transparent_temp.png');
@@ -466,14 +479,15 @@
                     var count = 0;
                     while (count < 7) {
                         var i = Math.floor(Math.random() * 10);
-                        var j = Math.floor(Math.random() * 7);
+                        var j = Math.floor(Math.random() * 5);
                         var newBrick = bricks.create(first_brick_offset.x + i * brick_steps.x,
-                            first_brick_offset.y + (j-1) * brick_steps.y, 'power');
-                        newBrick.anims.play('ice');
+                            first_brick_offset.y + (j-1) * brick_steps.y, 'iceBrick');
                         newBrick.scaleX = ice_brick_scales.x;
                         newBrick.scaleY = ice_brick_scales.y;
+                        newBrick.x += ice_brick_offset.x;
+                        newBrick.y += ice_brick_offset.y;
                         newBrick.setSize(brick_collider_size.x*1.2, brick_collider_size.y*1.1);
-                        newBrick.setOffset(-10,0);
+                        newBrick.setOffset(ice_brick_offset.x+ 30,ice_brick_offset.y + 57);
                         this.physics.add.collider(ball, newBrick, ball_brick_collision, null, this);
                         numbreaks++;
                         count++;
@@ -638,6 +652,16 @@
                 frameRate: 10
             });
 
+            this.anims.create({
+                key: 'iceBrickBreak',
+                frames: [
+                    {key: 'iceBrick'},
+                    {key: 'iceBrickBreak1'},
+                    {key: 'iceBrickBreak2'}
+                ],
+                frameRate: 10
+            });
+
             trap = this.physics.add.sprite(trap_initial_offset.x, trap_initial_offset.y, 'trap');
             trap.setCollideWorldBounds(true);
             trap.setImmovable(true);
@@ -729,6 +753,8 @@
             ball.body.setMaxVelocity(cur_max_ball_speed*Math.sqrt(3)*0.5); 
             ball.scaleX = ball_scales.x;
             ball.scaleY = ball_scales.y;
+            ball.setSize(ball_collider_size.x,ball_collider_size.y);
+            ball.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(ball);
 
             lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
