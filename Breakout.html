@@ -431,6 +431,7 @@
             if (balls.length === 0) {
                 this.losing_life.play();
                 if (life === 1) {
+                    lifeball1.setActive(false).setVisible(false);
                     losing = true;
                     lose.visible = true;
                     ball.setVelocity(0, 0);
@@ -445,6 +446,16 @@
                 }
 
                 else {
+                    switch (life) {
+                        case 3:
+                            lifeball3.setActive(false).setVisible(false);
+                            break;
+                        case 2:
+                            lifeball2.setActive(false).setVisible(false);
+                            break;
+                        default:
+                            break;
+                    }
                     life--;
                     start = false;
                     eject = false;
@@ -466,7 +477,6 @@
                     //ball.scaleX = ball_scales.x;
                     //ball.scaleY = ball_scales.y;
 
-                    lifeText.setText('life: ' + life);
                     losinglife.visible = true;
                     timer = this.time.addEvent({ delay: 500, callback: reset_loseinglife, callbackScope: this });
                 }
@@ -795,7 +805,10 @@
             //ball.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(ball);
 
-            lifeText = this.add.text(16, 16, 'life: ' + life, { fontSize: '32px', fill: '#fff' });
+            lifeText = this.add.text(16, 16, 'life: ', { fontSize: '32px', fill: '#fff' });
+            lifeball1 = this.add.image(125, 32, 'lifeball');
+            lifeball2 = this.add.image(150, 32, 'lifeball');
+            lifeball3 = this.add.image(175, 32, 'lifeball');
             win = this.physics.add.sprite(300, 300, 'win');
             lose = this.physics.add.sprite(300, 300, 'lose');
             win.visible = false;
