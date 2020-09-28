@@ -406,6 +406,7 @@
             this.load.audio('debuff', 'sound/debuff.wav');
             this.load.audio('losing_life', 'sound/losing_life.wav');
             this.load.audio('portal_sound', 'sound/portal_sound.wav');
+            this.load.audio('BGM', 'sound/BGM.wav');
         }
 
         function ball_paddle_collision(ball, paddle) {
@@ -847,6 +848,11 @@
             this.debuff = this.sound.add('debuff');
             this.losing_life = this.sound.add('losing_life');
             this.portal_sound = this.sound.add('portal_sound');
+            BGM = this.sound.add('BGM');
+            BGM.play();
+            BGM.loop = true;
+            BGM.volume = 0.1;
+
             //this.ball_bounce.play();
         }
 
