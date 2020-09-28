@@ -399,6 +399,7 @@
             this.load.image('icewallright', 'assets/icewallright.png');
             //this.load.multiatlas('snow', 'assets/Sheet2.json','assets');
             this.load.multiatlas('snow', 'assets/Sheets/Sheet.json', 'assets/Sheets');
+            this.load.image('title', 'assets/title.png');
 
             this.load.audio('ball_bounce', 'sound/ball_bounce.wav');
             this.load.audio('ball_brick', 'sound/ball_brick.wav');
@@ -805,14 +806,26 @@
             //ball.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(ball);
 
-            lifeText = this.add.text(16, 16, 'life: ', { fontSize: '32px', fill: '#fff' });
-            lifeball1 = this.add.image(125, 32, 'lifeball');
-            lifeball2 = this.add.image(150, 32, 'lifeball');
-            lifeball3 = this.add.image(175, 32, 'lifeball');
+            lifeball1 = this.add.image(50, 32, 'lifeball');
+            lifeball2 = this.add.image(75, 32, 'lifeball');
+            lifeball3 = this.add.image(100, 32, 'lifeball');
             win = this.physics.add.sprite(300, 300, 'win');
             lose = this.physics.add.sprite(300, 300, 'lose');
             win.visible = false;
             lose.visible = false; 
+
+            title = this.add.image(300, 275, 'title');
+            var title = this.tweens.add({
+                targets: title,
+                alpha: {
+                    from: 1, to: 0,
+                    ease: 'Linear',
+                    yoyo: false,
+                    delay: 2000
+                },
+                duration: 1000,
+                repeat: 0,
+            });
 
             this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
             this.physics.add.collider(ball, paddle2, ball_paddle_collision, null, this);
@@ -864,6 +877,7 @@
             {
                 if (start == false)
                     eject = true;
+
             }
 
             if (eject) {
