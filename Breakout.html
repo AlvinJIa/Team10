@@ -442,7 +442,6 @@
                     paddle2.x = paddle2_initial_offset.x;
                     paddle2.y = paddle2_initial_offset.y;
                     //Game.pause();
-                    lifeText.setText('life: ' + 0);
                 }
 
                 else {
@@ -457,8 +456,7 @@
                             break;
                     }
                     life--;
-                    start = false;
-                    eject = false;
+                    state = 1;
                     portaled = false;
                     ball.setVelocity(0, 0);
 
