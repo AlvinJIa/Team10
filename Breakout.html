@@ -39,8 +39,8 @@
         var numbreaks = 0;
         var winning = false;
         var losing = false;
-        var eject = false;
-        var start = false;
+        var state = 0;
+        var flipflop = false;
         var portaled = false;
         var paddle_speed = 300;
         var paddle2_speed = 300;
@@ -400,7 +400,6 @@
             //this.load.multiatlas('snow', 'assets/Sheet2.json','assets');
             this.load.multiatlas('snow', 'assets/Sheets/Sheet.json', 'assets/Sheets');
             this.load.image('title', 'assets/title.png');
-
             this.load.audio('ball_bounce', 'sound/ball_bounce.wav');
             this.load.audio('ball_brick', 'sound/ball_brick.wav');
             this.load.audio('buff', 'sound/buff.wav');
@@ -656,7 +655,6 @@
         }
 
         function create() {
-
             this.anims.create({
                 key: 'brick',
                 frames: [{ key: 'power', frame: 0 }],
@@ -806,6 +804,9 @@
             //ball.setOffset(ball_collider_offset.x, ball_collider_offset.y);
             balls.push(ball);
 
+            titleicon = this.add.image(300, 275, 'title');
+            titletext = this.add.text(200, 600, "PRESS SPACE TO START");
+
             lifeball1 = this.add.image(50, 32, 'lifeball');
             lifeball2 = this.add.image(75, 32, 'lifeball');
             lifeball3 = this.add.image(100, 32, 'lifeball');
@@ -814,18 +815,17 @@
             win.visible = false;
             lose.visible = false; 
 
-            title = this.add.image(300, 275, 'title');
-            var title = this.tweens.add({
-                targets: title,
-                alpha: {
-                    from: 1, to: 0,
-                    ease: 'Linear',
-                    yoyo: false,
-                    delay: 2000
-                },
-                duration: 1000,
-                repeat: 0,
-            });
+            trap.setActive(false).setVisible(false);
+            trap_top.setActive(false).setVisible(false);
+            bricks.setActive(false).setVisible(false);
+            paddle.setActive(false).setVisible(false);
+            paddle2.setActive(false).setVisible(false);
+            ball.setActive(false).setVisible(false);
+            portal1.setActive(false).setVisible(false);
+            portal2.setActive(false).setVisible(false);
+            lifeball1.setActive(false).setVisible(false);
+            lifeball2.setActive(false).setVisible(false);
+            lifeball3.setActive(false).setVisible(false);
 
             this.physics.add.collider(ball, paddle, ball_paddle_collision, null, this);
             this.physics.add.collider(ball, paddle2, ball_paddle_collision, null, this);
@@ -854,39 +854,66 @@
 
         function update(time, deltaTime) {
             // Handle keyboard controls for moving the paddle
-            if (cursors.left.isDown) {
-                paddle.setVelocityX(-paddle_speed);
-                paddle2.setVelocityX(-paddle2_speed);
-                //portal1.setVelocityX(-paddle_speed);
-                //portal2.setVelocityX(-paddle2_speed);
+            if (state != 0 ) {
+                if (cursors.left.isDown) {
+                    paddle.setVelocityX(-paddle_speed);
+                    paddle2.setVelocityX(-paddle2_speed);
+                    //portal1.setVelocityX(-paddle_speed);
+                    //portal2.setVelocityX(-paddle2_speed);
+                }
+                else if (cursors.right.isDown) {
+                    paddle.setVelocityX(paddle_speed);
+                    paddle2.setVelocityX(paddle2_speed);
+                    //portal1.setVelocityX(paddle_speed);
+                    //portal2.setVelocityX(paddle2_speed);
+                }
+                else {
+                    paddle.setVelocityX(0);
+                    paddle2.setVelocityX(0);
+                    //portal1.setVelocityX(0);
+                    //portal2.setVelocityX(0);
+                }
             }
-            else if (cursors.right.isDown) {
-                paddle.setVelocityX(paddle_speed);
-                paddle2.setVelocityX(paddle2_speed);
-                //portal1.setVelocityX(paddle_speed);
-                //portal2.setVelocityX(paddle2_speed);
-            }
-            else {
-                paddle.setVelocityX(0);
-                paddle2.setVelocityX(0);
-                //portal1.setVelocityX(0);
-                //portal2.setVelocityX(0);
-            }
-
-            if (cursors.space.isDown)
-            {
-                if (start == false)
-                    eject = true;
-
-            }
-
-            if (eject) {
-                ball.setVelocity(200, 200);
-                eject = false;
-                start = true
-            }
-            if (!start) {
+            if (state === 1) {
                 ball.x = paddle.x;
+                //state = 2;
+            }
+
+            if (cursors.space.isDown) {
+                if (!flipflop) {
+                    switch (state) {
+                        case 0:
+                            titleicon.setActive(false).setVisible(false);
+                            titletext.setActive(false).setVisible(false);
+                            trap.setActive(true).setVisible(true);
+                            trap_top.setActive(true).setVisible(true);
+                            bricks.setActive(true).setVisible(true);
+                            paddle.setActive(true).setVisible(true);
+                            paddle2.setActive(true).setVisible(true);
+                            ball.setActive(true).setVisible(true);
+                            portal1.setActive(true).setVisible(true);
+                            portal2.setActive(true).setVisible(true);
+                            lifeball1.setActive(true).setVisible(true);
+                            lifeball2.setActive(true).setVisible(true);
+                            lifeball3.setActive(true).setVisible(true);
+                            state = 1;
+                            flipflop = true;
+                            break;
+                        case 1:
+                            state = 2;
+                            //flipflop = true;
+                            break;
+                        case 2:
+                            ball.setVelocity(200, 200);
+                            state = 3;
+                            //flipflop = true;
+                            break;
+
+                    }
+                }
+            }
+            if (cursors.space.isUp) {
+                flipflop = false;
             }
 
             // If there is a current snowstorm
